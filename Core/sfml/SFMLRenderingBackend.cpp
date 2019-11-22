@@ -11,7 +11,10 @@ void SFMLRenderingBackend::clear()
     m_window->clear();
 }
 
-void SFMLRenderingBackend::draw_everything() { NOTIMPL }
+void SFMLRenderingBackend::draw_everything() 
+{ 
+    NOTIMPL 
+}
 
 void SFMLRenderingBackend::display()
 {
@@ -29,16 +32,16 @@ void SFMLRenderingBackend::set_window_size(const glm::vec2& size)
 {
     ASSERT(m_window);
     m_window->setSize(
-        sf::Vector2u { static_cast<uint>(size.x), static_cast<uint>(size.y) });
+                sf::Vector2u { static_cast<uint>(size.x), static_cast<uint>(size.y) });
 }
 
-void SFMLRenderingBackend::register_rectangle(glm::vec2 top_left, glm::vec2 w_h)
+void SFMLRenderingBackend::register_rectangle(glm::vec2 top_left, glm::vec2 w_h, const RefPtr<Material>& material)
 {
     NOTIMPL
 }
 
-void SFMLRenderingBackend::register_triangle(glm::vec2 first, glm::vec2 second,
-                                             glm::vec2 third)
+void SFMLRenderingBackend::register_triangle(glm::vec2 first, glm::vec2 second, glm::vec2 third, const RefPtr<Material>& material)
 {
     NOTIMPL
 }
+
