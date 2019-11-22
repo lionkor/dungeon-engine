@@ -34,3 +34,8 @@ void SFMLMaterial::set_texture(const GenericResource& res)
 {
     NOTIMPL
 }
+
+void SFMLMaterial::set_color(const Color& color)
+{
+    m_color = sf::Color(color.r, color.g, color.b, color.a);
+}

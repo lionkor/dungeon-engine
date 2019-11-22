@@ -15,8 +15,11 @@ public:
     virtual void set_texture(const RefPtr<Texture>& texture) override;
     virtual void set_texture(const Path& path) override;
     virtual void set_texture(const GenericResource& res) override;
-protected:
+    virtual void set_color(const Color& color) override;
     
+protected:
+    sf::Texture m_texture;
+    sf::Color m_color;
 };
 
 #endif // SFMLMATERIAL_H
