@@ -13,7 +13,7 @@ add_executable(dungeon-engine main.cpp
     Core/Window.cpp
     Core/Renderer.cpp
     Core/Application.cpp
-    Core/sfml/SFMLRenderingBackend.cpp
+    Core/sfml/SFMLBackend.cpp
     Core/sfml/SFMLMaterial.cpp
     Core/sfml/SFMLTexture.cpp
 )
