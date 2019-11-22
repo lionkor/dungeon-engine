@@ -19,6 +19,7 @@ public:
     virtual void load() = 0;
     virtual RawPtr<void> data_as_void_ptr() = 0;
     virtual const RawPtr<void> data_as_void_ptr() const = 0;
+    virtual SizeT size() const = 0;
 };
 
 #endif // GENERICRESOURCE_H
