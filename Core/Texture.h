@@ -3,7 +3,8 @@
 
 #include "Global.h"
 #include "Path.h"
-#include "GenericResource.h"
+
+class GenericResource;
 
 class Texture : public GUID
 {
