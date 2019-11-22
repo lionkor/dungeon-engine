@@ -2,13 +2,13 @@
 #define SFMLRENDERINGBACKEND_H
 
 #include "../Global.h"
-#include "../RenderingBackend.h"
+#include "../Backend.h"
 #include "SFMLMaterial.h"
 
-class SFMLRenderingBackend : public Backend
+class SFMLBackend : public Backend
 {
 public:
-    SFMLRenderingBackend();
+    SFMLBackend();
 
     virtual void clear() override;
     virtual void draw() override;

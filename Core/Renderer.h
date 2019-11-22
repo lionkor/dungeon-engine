@@ -2,7 +2,7 @@
 #define RENDERER_H
 
 #include "Global.h"
-#include "RenderingBackend.h"
+#include "Backend.h"
 
 enum class BackendImplementation
 {
