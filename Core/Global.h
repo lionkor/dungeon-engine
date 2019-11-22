@@ -12,6 +12,7 @@
 #include <glm/glm.hpp>
 
 using glm::vec2;
+using SizeT = std::size_t;
 
 #include "DebugTools.h"
 #include "GUID.h"
