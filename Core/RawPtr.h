@@ -6,6 +6,7 @@
 template<typename _T>
 class RawPtr
 {
+public:
     RawPtr(_T* data) : data(data) {}
     RawPtr(const RawPtr& p) : data(p.data) {}
     RawPtr(RawPtr&& p) : data(std::move(p.data)) {}
