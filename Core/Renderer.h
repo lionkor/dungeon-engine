@@ -13,14 +13,14 @@ class Renderer
 {
     OBJECT(Renderer)
 public:
-    RenderingBackend& rendering_backend();
+    Backend& rendering_backend();
     
     virtual void draw();
 
 protected:
     Renderer(BackendImplementation type);
 
-    OwnPtr<RenderingBackend> m_backend;
+    OwnPtr<Backend> m_backend;
 };
 
 #endif // RENDERER_H

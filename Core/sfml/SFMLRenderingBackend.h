@@ -5,7 +5,7 @@
 #include "../RenderingBackend.h"
 #include "SFMLMaterial.h"
 
-class SFMLRenderingBackend : public RenderingBackend
+class SFMLRenderingBackend : public Backend
 {
 public:
     SFMLRenderingBackend();

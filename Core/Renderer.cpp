@@ -6,13 +6,13 @@ Renderer::Renderer(BackendImplementation type)
     switch (type)
     {
         case BackendImplementation::SFML:
-            m_backend = OwnPtr<RenderingBackend>(new SFMLRenderingBackend);
+            m_backend = OwnPtr<Backend>(new SFMLRenderingBackend);
             break;
     }
     ASSERT(m_backend);
 }
 
-RenderingBackend& Renderer::rendering_backend()
+Backend& Renderer::rendering_backend()
 {
     ASSERT(m_backend);
     return *m_backend;
