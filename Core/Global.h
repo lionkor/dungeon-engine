@@ -13,6 +13,7 @@
 
 using glm::vec2;
 using SizeT = std::size_t;
+using uchar = std::uint8_t;
 
 #include "DebugTools.h"
 #include "GUID.h"
