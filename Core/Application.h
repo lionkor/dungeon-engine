@@ -13,7 +13,7 @@ public:
     void set_window_size(vec2 size);
 
 protected:
-    Application(BackendType type);
+    Application(BackendImplementation type);
 
     OwnPtr<Window> m_window;
     bool m_is_running;

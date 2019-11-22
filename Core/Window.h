@@ -12,7 +12,7 @@ public:
     virtual void draw();
     
 protected:
-    Window(BackendType type);
+    Window(BackendImplementation type);
     
     OwnPtr<Renderer> m_renderer;
 };

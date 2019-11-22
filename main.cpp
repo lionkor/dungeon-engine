@@ -3,6 +3,6 @@
 
 int main(int, char**)
 {
-    auto app = Application::construct(BackendType::SFML);
+    auto app = Application::construct(BackendImplementation::SFML);
 }
 

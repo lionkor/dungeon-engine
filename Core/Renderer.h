@@ -4,7 +4,7 @@
 #include "Global.h"
 #include "RenderingBackend.h"
 
-enum class BackendType
+enum class BackendImplementation
 {
     SFML,
 };
@@ -18,7 +18,7 @@ public:
     virtual void draw();
 
 protected:
-    Renderer(BackendType type);
+    Renderer(BackendImplementation type);
 
     OwnPtr<RenderingBackend> m_backend;
 };
