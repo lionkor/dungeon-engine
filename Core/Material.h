@@ -3,6 +3,7 @@
 
 #include "Global.h"
 #include "Texture.h"
+#include "Color.h"
 
 class Material
 {
@@ -18,6 +19,8 @@ public:
     virtual void set_texture(const RefPtr<Texture>& texture) = 0;
     virtual void set_texture(const Path& path) = 0;
     virtual void set_texture(const GenericResource& res) = 0;
+    
+    virtual void set_color(const Color& color) = 0;
 
 protected:
 };
