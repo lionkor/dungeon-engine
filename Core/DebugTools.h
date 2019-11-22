@@ -28,7 +28,7 @@
 
 #ifndef NOTIMPL
 #if DEBUG
-#define NOTIMPL fprintf(stderr, "%s%s not implemented / unfinished in %s%s:%u%s", ANSI_YELLOW, __PRETTY_FUNCTION__, ANSI_BOLD, __FILE__, __LINE__, ANSI_RESET);
+#define NOTIMPL fprintf(stderr, "%s%s called but not implemented / unfinished in %s%s:%u%s\n", ANSI_YELLOW, __PRETTY_FUNCTION__, ANSI_BOLD, __FILE__, __LINE__, ANSI_RESET);
 #endif
 #endif
 

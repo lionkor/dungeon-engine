@@ -11,6 +11,9 @@ add_executable(dungeon-engine main.cpp
     Core/Texture.cpp
     Core/Material.cpp
     Core/SFMLRenderingBackend.cpp
+    Core/Window.cpp
+    Core/Renderer.cpp
+    Core/Application.cpp
 )
 
 target_link_libraries(dungeon-engine sfml-window sfml-graphics sfml-system sfml-audio)

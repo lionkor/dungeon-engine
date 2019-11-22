@@ -3,7 +3,7 @@
 
 #define DEBUG 1
 
-
+#include <utility>
 #include <cassert>
 #include <filesystem>
 #include <iostream>
@@ -18,7 +18,18 @@ using glm::vec2;
 #include "Memory.h"
 
 #include "../String/String.h"
-#include "../String/StringBuilder.h"
-#include "../String/StringView.h"
+
+static inline sf::String to_sf_string(const String& str)
+{
+    return sf::String(str.c_str());
+}
+static inline sf::String to_sf_string(const StringView& str)
+{
+    return sf::String(str.c_str());
+}
+
+#define VIRTUAL_DTOR(x, ...)                                                             \
+public:                                                                                  \
+    virtual ~x() __VA_ARGS__ {}
 
 #endif // GLOBAL_H

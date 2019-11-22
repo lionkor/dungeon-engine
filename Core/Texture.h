@@ -14,7 +14,6 @@ public:
     
     virtual OwnPtr<Texture> load_from_file(const Path& path) = 0;
     virtual OwnPtr<Texture> load_from_memory(const GenericResource& res) = 0;
-protected:
 };
 
 #endif // TEXTURE_H
