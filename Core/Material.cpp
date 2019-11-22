@@ -4,3 +4,9 @@ Material::Material()
 {
     
 }
+
+Material::~Material()
+{
+    
+}
+

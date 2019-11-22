@@ -8,24 +8,18 @@ class Material
 {
 public:
     Material();
+    virtual ~Material();
 
-    inline bool has_texture() const { return m_texture.is_not_null(); }
-    inline void set_texture(RefPtr<Texture>&& tex) { m_texture = std::move(tex); }
+    virtual bool has_texture() const = 0;
     
-    inline RefPtr<Texture> texture()
-    {
-        ASSERT(m_texture.is_not_null());
-        return m_texture;
-    }
+    virtual RefPtr<Texture> texture() = 0;
+    virtual const RefPtr<Texture> texture() const = 0;
     
-    inline const RefPtr<Texture> texture() const
-    {
-        ASSERT(m_texture.is_not_null());
-        return m_texture;
-    }
+    virtual void set_texture(const RefPtr<Texture>& texture) = 0;
+    virtual void set_texture(const Path& path) = 0;
+    virtual void set_texture(const GenericResource& res) = 0;
 
 protected:
-    RefPtr<Texture> m_texture;
 };
 
 #endif // MATERIAL_H
