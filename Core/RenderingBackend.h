@@ -6,8 +6,8 @@
 class RenderingBackend
 {
 public:
-    RenderingBackend();
-    virtual ~RenderingBackend();
+    RenderingBackend() {}
+    virtual ~RenderingBackend() {}
     
     virtual void clear() = 0;
     virtual void display() = 0;
