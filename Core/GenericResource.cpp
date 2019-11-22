@@ -9,13 +9,3 @@ GenericResource::~GenericResource()
 {
     
 }
-
-GenericResource::GenericResource(const GenericResource &res)
-{
-    
-}
-
-GenericResource::GenericResource(GenericResource &&res)
-{
-    
-}
