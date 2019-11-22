@@ -61,7 +61,7 @@ public:
         return OwnPtr(new _T(args...));
     }
 
-    inline bool is_null() const { return this->get(); }
+    inline bool is_null() const { return !this->get(); }
     inline bool is_not_null() const { return this->get(); }
     inline operator bool() const { return is_null(); }
 

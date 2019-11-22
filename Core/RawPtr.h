@@ -24,6 +24,9 @@ public:
     _T* operator->() { return data; }
     const _T* operator->() const { return data; }
 
+    inline bool is_null() const { return !data; }
+    inline bool is_not_null() const { return data; }
+    
 protected:
     _T* data = nullptr;
 };
