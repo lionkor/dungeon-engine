@@ -8,8 +8,9 @@ add_executable(dungeon-engine main.cpp
     Core/GenericResource.cpp
     Core/GUID.cpp
     Core/Path.cpp
-    Core/RenderingBackend.cpp
     Core/Texture.cpp
+    Core/Material.cpp
+    Core/SFMLRenderingBackend.cpp
 )
 
 target_link_libraries(dungeon-engine sfml-window sfml-graphics sfml-system sfml-audio)
