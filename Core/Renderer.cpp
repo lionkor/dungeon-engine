@@ -1,11 +1,11 @@
 #include "Renderer.h"
-#include "SFMLRenderingBackend.h"
+#include "sfml/SFMLRenderingBackend.h"
 
-Renderer::Renderer(BackendType type)
+Renderer::Renderer(BackendImplementation type)
 {
     switch (type)
     {
-        case BackendType::SFML:
+        case BackendImplementation::SFML:
             m_backend = OwnPtr<RenderingBackend>(new SFMLRenderingBackend);
             break;
     }
