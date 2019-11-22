@@ -1,18 +1,24 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-#include <iostream>
-#include <glm/glm.hpp>
-#include <SFML/Graphics.hpp>
+#define DEBUG 1
+
+
+#include <cassert>
 #include <filesystem>
+#include <iostream>
+
+#include <SFML/Graphics.hpp>
+#include <glm/glm.hpp>
+
+using glm::vec2;
+
+#include "DebugTools.h"
+#include "GUID.h"
+#include "Memory.h"
+
 #include "../String/String.h"
 #include "../String/StringBuilder.h"
 #include "../String/StringView.h"
-#include "Memory.h"
-#include "GUID.h"
-
-#define DEBUG 1
-
-using glm::vec2;
 
 #endif // GLOBAL_H
