@@ -11,7 +11,7 @@ void SFMLRenderingBackend::clear()
     m_window->clear();
 }
 
-void SFMLRenderingBackend::draw_everything() 
+void SFMLRenderingBackend::draw() 
 { 
     NOTIMPL 
 }

@@ -11,7 +11,7 @@ public:
     SFMLRenderingBackend();
 
     virtual void clear() override;
-    virtual void draw_everything() override;
+    virtual void draw() override;
     virtual void display() override;
     virtual void set_window_title(const StringView& title) override;
     virtual void set_window_size(const glm::vec2& size) override;

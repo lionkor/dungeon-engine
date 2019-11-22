@@ -23,6 +23,6 @@ void Renderer::draw()
     ASSERT(m_backend);
     
     m_backend->clear();
-    m_backend->draw_everything();
+    m_backend->draw();
     m_backend->display();
 }
