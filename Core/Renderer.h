@@ -4,23 +4,21 @@
 #include "Global.h"
 #include "Backend.h"
 
-enum class BackendImplementation
-{
-    SFML,
-};
+class Window;
+class Application;
 
 class Renderer
 {
     OBJECT(Renderer)
 public:
-    Backend& rendering_backend();
     
     virtual void draw();
 
 protected:
-    Renderer(BackendImplementation type);
-
-    OwnPtr<Backend> m_backend;
+    Renderer(RawPtr<Window> window, RawPtr<Application> app);
+    
+    RawPtr<Window> m_window;
+    RawPtr<Application> m_application;
 };
 
 #endif // RENDERER_H

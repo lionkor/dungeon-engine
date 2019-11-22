@@ -1,28 +1,16 @@
 #include "Renderer.h"
 #include "sfml/SFMLBackend.h"
-
-Renderer::Renderer(BackendImplementation type)
-{
-    switch (type)
-    {
-        case BackendImplementation::SFML:
-            m_backend = OwnPtr<Backend>(new SFMLBackend);
-            break;
-    }
-    ASSERT(m_backend);
-}
-
-Backend& Renderer::rendering_backend()
-{
-    ASSERT(m_backend);
-    return *m_backend;
-}
+#include "Window.h"
+#include "Application.h"
 
 void Renderer::draw()
 {
-    ASSERT(m_backend);
-    
-    m_backend->clear();
-    m_backend->draw();
-    m_backend->display();
+    m_window->backend().clear();
+    m_window->backend().draw();
+    m_window->backend().display();
+}
+
+Renderer::Renderer(RawPtr<Window> window, RawPtr<Application> app)
+    : m_window(window), m_application(app)
+{
 }
