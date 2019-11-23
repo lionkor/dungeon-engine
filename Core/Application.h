@@ -16,6 +16,13 @@ public:
 
     inline Renderer& renderer();
     inline const Renderer& renderer() const;
+    
+    // FIXME: add a reason / error code?
+    void shutdown();
+    void run();
+    
+    State& state();
+    const State& state() const;
 
 protected:
     Application(BackendImplementation type);
