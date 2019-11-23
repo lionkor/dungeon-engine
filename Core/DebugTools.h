@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <cstdlib>
 
+#define ANSI_RESET "\u001b[0m"
+
 #define ANSI_BLACK "\u001b[30m"
 #define ANSI_RED "\u001b[31m"
 #define ANSI_GREEN "\u001b[32m"
@@ -12,7 +14,6 @@
 #define ANSI_MAGENTA "\u001b[35m"
 #define ANSI_CYAN "\u001b[36m"
 #define ANSI_WHITE "\u001b[37m"
-#define ANSI_RESET "\u001b[0m"
 
 #define ANSI_BLACK_BOLD "\u001b[30;1m"
 #define ANSI_RED_BOLD "\u001b[31;1m"
