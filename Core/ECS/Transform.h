@@ -1,11 +1,26 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
+#include "../Global.h"
+#include "Component.h"
 
-class Transform
+class Transform : public Component
 {
 public:
-    Transform();
+    Transform(Entity& entity, const vec2& position, float rotation = 0.0f);
+
+    vec2& position();
+    const vec2& position() const;
+
+    void set_position(const vec2& pos);
+    void set_rotation(float rot);
+
+    float& rotation();
+    const float& rotation() const;
+
+protected:
+    vec2 m_position;
+    float m_rotation;
 };
 
 #endif // TRANSFORM_H
