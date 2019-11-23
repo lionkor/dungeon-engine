@@ -3,7 +3,8 @@
 
 SFMLBackend::SFMLBackend(Window& window)
     : Backend(window),
-      m_render_window(OwnPtr<sf::RenderWindow>::make(sf::VideoMode(800, 600), "Window"))
+      m_render_window(OwnPtr<sf::RenderWindow>::make(sf::VideoMode(800, 600), "Window")),
+      m_vertexarray(sf::PrimitiveType::Triangles)
 {
 }
 
@@ -74,13 +75,33 @@ void SFMLBackend::set_window_size(const glm::vec2& size)
         sf::Vector2u { static_cast<uint>(size.x), static_cast<uint>(size.y) });
 }
 
-void SFMLBackend::register_rectangle(glm::vec2 top_left, glm::vec2 w_h,
-                                     const RefPtr<Material>& material)
+GUID SFMLBackend::register_polygon(const Polygon& polygon)
 {
-    NOTIMPL
+    SizeT start = m_vertexarray.getVertexCount();
+    SFMLBufferInterval interval;
+    interval.index = start;
+    interval.count = polygon.triangles.size() * 3;
+    interval.material = reinterpret_cast<SFMLMaterial&>(*polygon.material);
+    m_vertexarray.resize(start + polygon.triangles.size() * 3);
+    SizeT tri = 0;
+    for (const auto& triangle : polygon.triangles)
+    {
+        for (uchar i = 0; i < 3; ++i)
+        {
+            m_vertexarray[start + i * tri].position = to_sf_vector2f(triangle.points[i]);
+            m_vertexarray[start + i * tri].color =
+                reinterpret_cast<SFMLMaterial&>(*polygon.material).sf_color();
+        }
+        ++tri;
+    }
+    m_buffer_intervals.emplace(std::pair(interval.guid(), interval));
+    return interval.guid();
 }
 
-void SFMLBackend::register_triangle(glm::vec2 first, glm::vec2 second, glm::vec2 third,
+GUID SFMLBackend::register_rectangle(glm::vec2 top_left, glm::vec2 w_h,
+                                     const RefPtr<Material>& material) { NOTIMPL }
+
+GUID SFMLBackend::register_triangle(glm::vec2 first, glm::vec2 second, glm::vec2 third,
                                     const RefPtr<Material>& material)
 {
     NOTIMPL

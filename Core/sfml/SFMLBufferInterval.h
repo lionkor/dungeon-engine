@@ -1,11 +1,14 @@
 #ifndef SFMLRENDERABLE_H
 #define SFMLRENDERABLE_H
 
+#include "../Global.h"
+#include "SFMLMaterial.h"
 
-class SFMLRenderable
+struct SFMLBufferInterval : public GUID
 {
-public:
-    SFMLRenderable();
+    SizeT index;
+    SizeT count;
+    SFMLMaterial material;
 };
 
 #endif // SFMLRENDERABLE_H

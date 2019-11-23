@@ -4,6 +4,7 @@
 #include "../Global.h"
 #include "../Backend.h"
 #include "SFMLMaterial.h"
+#include "SFMLBufferInterval.h"
 
 class SFMLBackend : public Backend
 {
@@ -17,13 +18,17 @@ public:
     virtual void close_window() override;
     virtual void set_window_title(const StringView& title) override;
     virtual void set_window_size(const glm::vec2& size) override;
-    virtual void register_rectangle(glm::vec2 top_left, glm::vec2 w_h,
+
+    virtual GUID register_polygon(const Polygon& polygon) override;
+    virtual GUID register_rectangle(glm::vec2 top_left, glm::vec2 w_h,
                                     const RefPtr<Material>& material) override;
-    virtual void register_triangle(glm::vec2 first, glm::vec2 second, glm::vec2 third,
+    virtual GUID register_triangle(glm::vec2 first, glm::vec2 second, glm::vec2 third,
                                    const RefPtr<Material>& material) override;
 
 protected:
+    UnorderedMap<GUID, SFMLBufferInterval> m_buffer_intervals;
     OwnPtr<sf::RenderWindow> m_render_window;
+    sf::VertexArray m_vertexarray;
     sf::Event event;
 };
 

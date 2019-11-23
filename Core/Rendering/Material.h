@@ -20,6 +20,7 @@ public:
     virtual void set_texture(const Path& path) = 0;
     virtual void set_texture(const GenericResource& res) = 0;
     
+    virtual Color color() = 0;
     virtual void set_color(const Color& color) = 0;
 
 protected:

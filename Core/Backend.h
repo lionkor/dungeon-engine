@@ -3,6 +3,7 @@
 
 #include "Global.h"
 #include "Keys.h"
+#include "Rendering/Polygon.h"
 
 class Material;
 class Texture;
@@ -22,16 +23,19 @@ public:
     virtual void set_window_title(const StringView& title) = 0;
     virtual void set_window_size(const vec2& size) = 0;
 
-    virtual void register_rectangle(vec2 top_left, vec2 w_h,
+    virtual GUID register_polygon(const Polygon& polygon) = 0;
+
+    virtual GUID register_rectangle(vec2 top_left, vec2 w_h,
                                     const RefPtr<Material>& material) = 0;
-    virtual void register_triangle(vec2 first, vec2 second, vec2 third,
+
+    virtual GUID register_triangle(vec2 first, vec2 second, vec2 third,
                                    const RefPtr<Material>& material) = 0;
 
     inline virtual bool is_key_pressed(Key key) const final
     {
         return m_pressed_keys.find(key) != m_pressed_keys.end();
     }
-    
+
     inline virtual void clear_states() final
     {
         // FIXME not used
@@ -43,4 +47,3 @@ protected:
 };
 
 #endif // RENDERINGBACKEND_H
-
