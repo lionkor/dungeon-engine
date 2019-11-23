@@ -8,11 +8,13 @@ add_executable(dungeon-engine main.cpp
     Core/GenericResource.cpp
     Core/GUID.cpp
     Core/Path.cpp
-    Core/Texture.cpp
-    Core/Material.cpp
+    Core/Rendering/Texture.cpp
+    Core/Rendering/Material.cpp
     Core/Window.cpp
-    Core/Renderer.cpp
+    Core/Rendering/Renderer.cpp
     Core/Application.cpp
+    Core/GameState.cpp
+    Core/ECS/Entity.cpp
     Core/sfml/SFMLBackend.cpp
     Core/sfml/SFMLMaterial.cpp
     Core/sfml/SFMLTexture.cpp
