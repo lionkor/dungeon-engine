@@ -9,23 +9,32 @@ class GUID
 {
 public:
     GUID();
-    ~GUID() noexcept;
-    
+    virtual ~GUID();
+
     bool has_destroy_callback() const;
-    
+
     template<typename _Fnc>
-    inline void set_destroy_callback(_Fnc fnc) { m_destroy_callback = fnc; }
-    
+    inline void set_destroy_callback(_Fnc fnc)
+    {
+        m_destroy_callback = fnc;
+    }
+
     GUID& guid();
-    
-    constexpr const GUID& guid() const;
-    constexpr ptr_t int_guid() const;
-    
-    constexpr bool operator<(const GUID& other) const;
-    constexpr bool operator>(const GUID& other) const;
-    constexpr bool operator==(const GUID& other) const;
-    constexpr bool operator<=(const GUID& other) const;
-    constexpr bool operator>=(const GUID& other) const;
+
+    constexpr const GUID& guid() const { return *this; }
+
+    constexpr ptr_t int_guid() const { return m_raw; }
+
+    constexpr bool operator<(const GUID& other) const { return m_raw < other.m_raw; }
+
+    constexpr bool operator>(const GUID& other) const { return m_raw > other.m_raw; }
+
+    constexpr bool operator==(const GUID& other) const { return m_raw == other.m_raw; }
+
+    constexpr bool operator<=(const GUID& other) const { return m_raw <= other.m_raw; }
+
+    constexpr bool operator>=(const GUID& other) const { return m_raw >= other.m_raw; }
+
 private:
     std::function<void(std::uintptr_t)> m_destroy_callback;
     std::uintptr_t m_raw;

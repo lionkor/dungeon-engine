@@ -10,7 +10,7 @@ class Window;
 class Backend
 {
 public:
-    Backend(RawPtr<Window> window) : m_window(window) {}
+    Backend(Window& window) : m_window(window) {}
     virtual ~Backend() {}
 
     virtual void clear() = 0;
@@ -25,7 +25,7 @@ public:
                                    const RefPtr<Material>& material) = 0;
 
 protected:
-    RawPtr<Window> m_window;
+    Window& m_window;
 };
 
 #endif // RENDERINGBACKEND_H

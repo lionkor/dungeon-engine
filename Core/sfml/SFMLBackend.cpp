@@ -1,6 +1,6 @@
 #include "SFMLBackend.h"
 
-SFMLBackend::SFMLBackend(RawPtr<Window> window)
+SFMLBackend::SFMLBackend(Window& window)
     : Backend(window),
       m_render_window(OwnPtr<sf::RenderWindow>::make(sf::VideoMode(800, 600), "Window"))
 {

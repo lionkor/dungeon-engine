@@ -8,7 +8,7 @@
 class SFMLBackend : public Backend
 {
 public:
-    SFMLBackend(RawPtr<Window> window);
+    SFMLBackend(Window& window);
 
     virtual void clear() override;
     virtual void draw() override;

@@ -7,6 +7,8 @@
 #include <cassert>
 #include <filesystem>
 #include <iostream>
+#include <unordered_set>
+#include <unordered_map>
 
 #include <SFML/Graphics.hpp>
 #include <glm/glm.hpp>
@@ -17,6 +19,12 @@ using uchar = std::uint8_t;
 
 template<typename _T>
 using Vector = std::vector<_T>;
+
+template<typename _T>
+using UnorderedSet = std::unordered_set<_T>;
+
+template<typename _KeyT, typename _ValueT>
+using UnorderedMap = std::unordered_map<_KeyT, _ValueT>;
 
 #include "DebugTools.h"
 #include "GUID.h"

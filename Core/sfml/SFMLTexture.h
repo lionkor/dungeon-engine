@@ -2,7 +2,7 @@
 #define SFMLTEXTURE_H
 
 #include "../Global.h"
-#include "../Texture.h"
+#include "../Rendering/Texture.h"
 
 class SFMLTexture : public Texture
 {

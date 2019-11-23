@@ -3,7 +3,7 @@
 
 #include "Global.h"
 #include "Path.h"
-#include "Texture.h"
+#include "Rendering/Texture.h"
 
 class GenericResource
 {

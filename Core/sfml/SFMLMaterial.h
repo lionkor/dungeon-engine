@@ -2,7 +2,7 @@
 #define SFMLMATERIAL_H
 
 #include "../Global.h"
-#include "../Material.h"
+#include "../Rendering/Material.h"
 
 class SFMLMaterial : public Material
 {

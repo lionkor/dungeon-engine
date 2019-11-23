@@ -80,4 +80,15 @@ public:                                                                         
                                                                                          \
     virtual ~x() __VA_ARGS__ {}
 
+#define OBJECT_CAST_CTOR(x, y, ...)                                                      \
+public:                                                                                  \
+    virtual inline const char* class_name() const { return #x; }                         \
+    template<typename... _Args>                                                          \
+    static OwnPtr<y> construct(_Args&&... args)                                          \
+    {                                                                                    \
+        return OwnPtr<y>(new x(std::forward<_Args>(args)...));                           \
+    }                                                                                    \
+                                                                                         \
+    virtual ~x() __VA_ARGS__ {}
+
 #endif // MEMORY_H
