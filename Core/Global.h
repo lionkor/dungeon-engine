@@ -15,9 +15,13 @@ using glm::vec2;
 using SizeT = std::size_t;
 using uchar = std::uint8_t;
 
+template<typename _T>
+using Vector = std::vector<_T>;
+
 #include "DebugTools.h"
 #include "GUID.h"
 #include "Memory.h"
+#include "RawPtr.h"
 
 #include "../String/String.h"
 
