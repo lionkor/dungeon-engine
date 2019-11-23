@@ -7,14 +7,17 @@ set(CMAKE_CXX_COMPILER clang++)
 add_executable(dungeon-engine main.cpp
     Core/GenericResource.cpp
     Core/GUID.cpp
-    Core/Path.cpp
+    Core/IO/Path.cpp
+    Core/IO/File.cpp
     Core/Rendering/Texture.cpp
     Core/Rendering/Material.cpp
     Core/Window.cpp
     Core/Rendering/Renderer.cpp
     Core/Application.cpp
     Core/GameState.cpp
+    Core/State.cpp
     Core/ECS/Entity.cpp
+    Core/ECS/Transform.cpp
     Core/sfml/SFMLBackend.cpp
     Core/sfml/SFMLMaterial.cpp
     Core/sfml/SFMLTexture.cpp
