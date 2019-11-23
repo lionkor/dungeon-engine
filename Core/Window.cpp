@@ -16,7 +16,7 @@ Window::Window(BackendImplementation type, RawPtr<Application> app)
     switch (type)
     {
         case BackendImplementation::SFML:
-            m_backend = OwnPtr<Backend>(new SFMLBackend);
+            m_backend = OwnPtr<Backend>(new SFMLBackend(this));
             break;
     }
     ASSERT(m_backend);

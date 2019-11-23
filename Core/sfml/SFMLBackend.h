@@ -8,7 +8,7 @@
 class SFMLBackend : public Backend
 {
 public:
-    SFMLBackend();
+    SFMLBackend(RawPtr<Window> window);
 
     virtual void clear() override;
     virtual void draw() override;
@@ -21,7 +21,7 @@ public:
                                    const RefPtr<Material>& material) override;
 
 protected:
-    OwnPtr<sf::RenderWindow> m_window;
+    OwnPtr<sf::RenderWindow> m_render_window;
 };
 
 #endif // SFMLRENDERINGBACKEND_H
