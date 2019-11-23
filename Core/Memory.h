@@ -17,7 +17,7 @@ public:
 
     inline bool is_null() const { return !this->get(); }
     inline bool is_not_null() const { return this->get(); }
-    inline operator bool() const { return is_null(); }
+    inline operator bool() const { return this->get(); }
 
     inline const RawPtr<_T> raw() const { return this->get(); }
 };
@@ -39,7 +39,7 @@ public:
 
     inline bool is_null() const { return !this->get(); }
     inline bool is_not_null() const { return this->get(); }
-    inline operator bool() const { return is_null(); }
+    inline operator bool() const { return this->get(); }
 
     inline RawPtr<_T> raw() { return this->get(); }
     inline const RawPtr<_T> raw() const { return this->get(); }
@@ -63,7 +63,7 @@ public:
 
     inline bool is_null() const { return !this->get(); }
     inline bool is_not_null() const { return this->get(); }
-    inline operator bool() const { return is_null(); }
+    inline operator bool() const { return this->get(); }
 
     inline RawPtr<_T> raw() { return this->get(); }
     inline const RawPtr<_T> raw() const { return this->get(); }
