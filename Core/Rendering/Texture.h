@@ -2,7 +2,7 @@
 #define TEXTURE_H
 
 #include "../Global.h"
-#include "../Path.h"
+#include "../IO/Path.h"
 
 class GenericResource;
 

@@ -2,7 +2,7 @@
 #define GENERICRESOURCE_H
 
 #include "Global.h"
-#include "Path.h"
+#include "IO/Path.h"
 #include "Rendering/Texture.h"
 
 class GenericResource
