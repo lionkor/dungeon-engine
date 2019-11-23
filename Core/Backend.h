@@ -5,11 +5,12 @@
 
 class Material;
 class Texture;
+class Window;
 
 class Backend
 {
 public:
-    Backend() {}
+    Backend(RawPtr<Window> window) : m_window(window) {}
     virtual ~Backend() {}
 
     virtual void clear() = 0;
@@ -22,6 +23,9 @@ public:
                                     const RefPtr<Material>& material) = 0;
     virtual void register_triangle(vec2 first, vec2 second, vec2 third,
                                    const RefPtr<Material>& material) = 0;
+
+protected:
+    RawPtr<Window> m_window;
 };
 
 #endif // RENDERINGBACKEND_H
