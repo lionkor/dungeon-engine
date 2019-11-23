@@ -42,8 +42,4 @@ static inline sf::String to_sf_string(const StringView& str)
     return sf::String(str.c_str());
 }
 
-#define VIRTUAL_DTOR(x, ...)                                                             \
-public:                                                                                  \
-    virtual ~x() __VA_ARGS__ {}
-
 #endif // GLOBAL_H
