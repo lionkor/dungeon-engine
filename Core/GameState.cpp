@@ -7,8 +7,6 @@ void GameState::update(float dt)
     {
         entity->update(dt);
     }
-
-    NOTIMPL
 }
 
 GameState::GameState(Application& application) : State(application) {}

@@ -7,13 +7,6 @@ GUID::GUID()
 
 GUID::~GUID()
 {
-    if (m_destroy_callback)
-        m_destroy_callback(m_raw);
-}
-
-bool GUID::has_destroy_callback() const 
-{ 
-    return m_destroy_callback != nullptr; 
 }
 
 GUID &GUID::guid()

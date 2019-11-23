@@ -9,7 +9,7 @@ class GUID
 {
 public:
     GUID();
-    virtual ~GUID();
+    ~GUID();
     
     GUID& guid();
 

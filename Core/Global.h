@@ -37,9 +37,15 @@ static inline sf::String to_sf_string(const String& str)
 {
     return sf::String(str.c_str());
 }
+
 static inline sf::String to_sf_string(const StringView& str)
 {
     return sf::String(str.c_str());
+}
+
+static inline sf::Vector2f to_sf_vector2f(const vec2& v)
+{
+    return sf::Vector2f(v.x, v.y);
 }
 
 #endif // GLOBAL_H
