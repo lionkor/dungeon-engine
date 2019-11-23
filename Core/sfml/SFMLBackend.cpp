@@ -1,9 +1,48 @@
 #include "SFMLBackend.h"
+#include "../Window.h"
 
 SFMLBackend::SFMLBackend(Window& window)
     : Backend(window),
       m_render_window(OwnPtr<sf::RenderWindow>::make(sf::VideoMode(800, 600), "Window"))
 {
+}
+
+void SFMLBackend::update(float)
+{
+    while (m_render_window->pollEvent(event))
+    {
+        switch (event.type)
+        {
+            case sf::Event::Closed:
+                m_window.close();
+                break;
+            case sf::Event::KeyPressed:
+                switch (event.key.code)
+                {
+                    case sf::Keyboard::B:
+                        m_pressed_keys.insert(Key::B);
+                        break;
+                    default:
+                        NOTIMPL
+                        break;
+                }
+                break;
+            case sf::Event::KeyReleased:
+                switch (event.key.code)
+                {
+                    case sf::Keyboard::B:
+                        m_pressed_keys.erase(Key::B);
+                        break;
+                    default:
+                        NOTIMPL
+                        break;
+                }
+                break;
+            default:
+                NOTIMPL
+                break;
+        }
+    }
 }
 
 void SFMLBackend::clear()
@@ -19,6 +58,8 @@ void SFMLBackend::display()
     ASSERT(m_render_window);
     m_render_window->display();
 }
+
+void SFMLBackend::close_window() { m_render_window->close(); }
 
 void SFMLBackend::set_window_title(const StringView& title)
 {
