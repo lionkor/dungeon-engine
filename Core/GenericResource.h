@@ -8,6 +8,7 @@
 class GenericResource
 {
 public:
+    GenericResource();
     GenericResource(const Path& path);
     virtual ~GenericResource();
     

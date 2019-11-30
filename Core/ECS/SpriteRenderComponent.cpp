@@ -3,31 +3,20 @@
 #include "../State.h"
 #include "../Rendering/Renderer.h"
 
-SpriteRenderComponent::SpriteRenderComponent(Entity& entity)
-    : Component(entity)
+SpriteRenderComponent::SpriteRenderComponent(Entity& entity) : Component(entity)
 {
-    m_entity.state().renderer();
+    // FIXME: push info to renderer lol
 }
 
-Sprite& SpriteRenderComponent::sprite()
-{
-    ASSERT(m_sprite.material.is_not_null());
-    return m_sprite;
-}
+Sprite& SpriteRenderComponent::sprite() { return m_sprite; }
 
-const Sprite& SpriteRenderComponent::sprite() const
-{
-    ASSERT(m_sprite.material.is_not_null());
-    return m_sprite;
-}
+const Sprite& SpriteRenderComponent::sprite() const { return m_sprite; }
 
 void SpriteRenderComponent::set_sprite(const Sprite& spr)
 {
-    ASSERT(spr.material.is_not_null());
+    ASSERT(this);
     m_sprite = spr;
+    Renderer::the().submit(m_sprite);
 }
 
-void SpriteRenderComponent::update(float)
-{
-    
-}
+void SpriteRenderComponent::update(float) {}

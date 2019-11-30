@@ -4,23 +4,19 @@
 #include "../Global.h"
 #include "../Backend.h"
 
-class Window;
-class Application;
-
 class Renderer
 {
-    OBJECT(Renderer)
 public:
+    static Renderer& the();
     
     virtual void draw();
-
-    RefPtr<Material> create_material(const RefPtr<Texture>&, Color);
+    
+    virtual GUID submit(const Sprite& spr);
     
 protected:
-    Renderer(Window& window, Application& app);
+    Renderer();
     
-    Window& m_window;
-    Application& m_application;
+    static OwnPtr<Renderer> s_the_renderer;
 };
 
 #endif // RENDERER_H

@@ -7,10 +7,10 @@
 
 struct Sprite
 {
-    Sprite() : material(nullptr), rectangle({ { 0, 0 }, { 0, 0 } }) {}
-    Sprite(RefPtr<Material> mat, Rectangle rect) : material(mat), rectangle(rect) {}
+    Sprite() : material(), rectangle({ { 0, 0 }, { 0, 0 } }) {}
+    Sprite(Material mat, Rectangle rect) : material(mat), rectangle(rect) {}
 
-    RefPtr<Material> material;
+    Material material;
     Rectangle rectangle;
 };
 

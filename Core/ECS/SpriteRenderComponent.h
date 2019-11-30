@@ -9,8 +9,8 @@
 
 class SpriteRenderComponent : public Component, public GUID
 {
-    OBJECT_CAST_CTOR(SpriteRenderComponent, Component, override);
 public:
+    SpriteRenderComponent(Entity& entity);
     
     Sprite& sprite();
     const Sprite& sprite() const;
@@ -19,7 +19,6 @@ public:
     virtual void update(float) override;
     
 protected:
-    SpriteRenderComponent(Entity& entity);
     
     Sprite m_sprite;
 };

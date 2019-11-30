@@ -3,19 +3,28 @@
 #include "../Window.h"
 #include "../Application.h"
 
+OwnPtr<Renderer> Renderer::s_the_renderer;
+
 void Renderer::draw()
 {
-    m_window.backend().clear();
-    m_window.backend().draw();
-    m_window.backend().display();
+    Window::the().backend().clear();
+    Window::the().backend().draw();
+    Window::the().backend().display();
 }
 
-RefPtr<Material> Renderer::create_material(const RefPtr<Texture>& tex, Color color)
+GUID Renderer::submit(const Sprite& spr)
 {
-    return m_window.backend().create_material(tex, color);
+    return Window::the().backend().submit(spr);
 }
 
-Renderer::Renderer(Window& window, Application& app)
-    : m_window(window), m_application(app)
+Renderer& Renderer::the()
 {
+    if (!Renderer::s_the_renderer)
+    {
+        verbose("Renderer doesn't exist! Creating new Renderer");
+        Renderer::s_the_renderer = OwnPtr<Renderer>(new Renderer());
+    }
+    return *Renderer::s_the_renderer;
 }
+
+Renderer::Renderer() {}

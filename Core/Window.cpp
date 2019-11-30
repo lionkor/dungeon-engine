@@ -3,17 +3,16 @@
 #include "Application.h"
 #include "sfml/SFMLBackend.h"
 
+OwnPtr<Window> Window::s_the_window;
+
 void Window::update(float dt)
 {
     ASSERT(m_backend.is_not_null());
-    m_backend->clear_states();
+    // m_backend->clear_states();
     m_backend->update(dt);
 }
 
-void Window::draw() 
-{ 
-    m_renderer->draw(); 
-}
+void Window::draw() { Renderer::the().draw(); }
 
 Backend& Window::backend()
 {
@@ -31,19 +30,9 @@ void Window::set_title(const StringView& title) { m_backend->set_window_title(ti
 
 void Window::set_size(const glm::vec2& size) { m_backend->set_window_size(size); }
 
-void Window::close()
-{
-    m_application.shutdown();
-}
+void Window::close() { Application::the().shutdown(); }
 
-Renderer& Window::renderer() { return *m_renderer; }
-
-const Renderer& Window::renderer() const { return *m_renderer; }
-
-bool Window::is_mouse_down()
-{
-    NOTIMPL
-}
+bool Window::is_mouse_down() { NOTIMPL }
 
 bool Window::is_key_pressed(Key key)
 {
@@ -51,13 +40,22 @@ bool Window::is_key_pressed(Key key)
     return m_backend->is_key_pressed(key);
 }
 
-Window::Window(BackendImplementation type, Application& app)
-    : m_renderer(Renderer::construct(*this, app)), m_backend(nullptr), m_application(app)
+Window& Window::the()
+{
+    if (!Window::s_the_window)
+    {
+        // FIXME: Always SFML
+        Window::s_the_window = OwnPtr<Window>(new Window(BackendImplementation::SFML));
+    }
+    return *Window::s_the_window;
+}
+
+Window::Window(BackendImplementation type) : m_backend(/* what should we pass backend? */)
 {
     switch (type)
     {
         case BackendImplementation::SFML:
-            m_backend = OwnPtr<Backend>(new SFMLBackend(*this));
+            m_backend = OwnPtr<Backend>(new SFMLBackend());
             break;
     }
     ASSERT(m_backend);

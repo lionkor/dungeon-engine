@@ -10,7 +10,7 @@ class Person : public Entity
 public:
     virtual void update(float) override
     {
-        if (m_state.window().is_key_pressed(Key::B))
+        if (Window::the().is_key_pressed(Key::B))
             std::cout << "B IS PRESSED!" << std::endl;
     }
 
@@ -18,24 +18,18 @@ public:
     virtual void deserialize(File&) override {}
 
 protected:
-    Person(State& e) : Entity(e)
+    Person(State& e) : Entity(e, vec2 { 300, 300 })
     {
-        auto& spritecomp = add_component<SpriteRenderComponent>();
-        spritecomp.set_sprite(
-            Sprite(m_state.renderer().create_material(nullptr, Color { 255, 0, 0, 0 }),
-                   Rectangle { {
-                                   0,
-                                   0,
-                               },
-                               { 100, 100 } }));
+        auto& c = add_component<SpriteRenderComponent>();
+        c.set_sprite(Sprite(Material(Texture("/home/lion/src/games/dungeon/res/textures/wall.png"_sv), Color()), Rectangle(m_transform.position(), { 100, 100 })));
     }
 };
 
 int main(int, char**)
 {
-    auto app = Application::construct(BackendImplementation::SFML);
+    auto& app = Application::the();
 
-    reinterpret_cast<GameState&>(app->state()).adopt_entity<Person>();
+    reinterpret_cast<GameState&>(app.state()).adopt_entity<Person>();
 
-    app->run();
+    app.run();
 }

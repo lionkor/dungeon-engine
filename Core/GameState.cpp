@@ -9,4 +9,4 @@ void GameState::update(float dt)
     }
 }
 
-GameState::GameState(Application& application) : State(application) {}
+GameState::GameState() : State() {}

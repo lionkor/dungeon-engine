@@ -2,17 +2,17 @@
 #define SFMLRENDERABLE_H
 
 #include "../Global.h"
-#include "SFMLMaterial.h"
+#include "../Rendering/Material.h"
 
 struct SFMLBufferInterval : public GUID
 {
-    SFMLBufferInterval(SizeT index, SizeT count, SFMLMaterial mat)
+    SFMLBufferInterval(SizeT index, SizeT count, Material mat)
         : index(index), count(count), material(mat)
     {
     }
     SizeT index;
     SizeT count;
-    SFMLMaterial material;
+    Material material;
 };
 
 #endif // SFMLRENDERABLE_H

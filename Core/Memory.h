@@ -41,12 +41,18 @@ public:
     inline bool is_not_null() const { return this->get(); }
     inline operator bool() const { return this->get(); }
 
+    inline RefPtr& operator=(const RefPtr& ptr)
+    {
+        std::shared_ptr<_T>::operator=(ptr);
+        return *this;
+    }
+
     template<typename _TConvertType>
     _TConvertType& as()
     {
         return reinterpret_cast<_TConvertType>(this->get());
     }
-    
+
     template<typename _TConvertType>
     const _TConvertType& as() const
     {

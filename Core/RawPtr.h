@@ -11,6 +11,8 @@ public:
     RawPtr(const RawPtr& p) : data(p.data) {}
     RawPtr(RawPtr&& p) : data(std::move(p.data)) {}
 
+    // FIXME: add `as` method
+    
     operator _T*() { return data; }
     operator const _T*() const { return data; }
     operator bool() { return data; }

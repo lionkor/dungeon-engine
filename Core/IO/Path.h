@@ -6,6 +6,7 @@
 class Path : public std::filesystem::path
 {
 public:
+    Path(const StringView& path_string);
     Path(const String& path_string);
 private:
 };

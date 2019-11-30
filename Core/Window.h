@@ -14,11 +14,10 @@ class Application;
 
 class Window
 {
-    OBJECT(Window);
-
 public:
     virtual void update(float dt);
     virtual void draw();
+    
     Backend& backend();
     const Backend& backend() const;
 
@@ -26,18 +25,18 @@ public:
     void set_size(const vec2& size);
     void close();
     
-    Renderer& renderer();
-    const Renderer& renderer() const;
-
     bool is_mouse_down();
     bool is_key_pressed(Key key);
 
+    static Window& the();
+    
 protected:
-    Window(BackendImplementation type, Application& app);
+    static OwnPtr<Window> s_the_window;
+    
+    Window(BackendImplementation type);
 
-    OwnPtr<Renderer> m_renderer;
+    
     OwnPtr<Backend> m_backend;
-    Application& m_application;
 };
 
 #endif // WINDOW_H

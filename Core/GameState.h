@@ -11,7 +11,7 @@ public:
     virtual void update(float dt) override;
     
 protected:
-    GameState(Application& application);
+    GameState();
 };
 
 #endif // GAMESTATE_H

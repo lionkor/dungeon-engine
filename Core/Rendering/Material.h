@@ -9,21 +9,23 @@ class Material
 {
 public:
     Material();
+    Material(const Texture&);
+    Material(const Color&);
+    Material(const Texture&, const Color&);
     virtual ~Material();
 
-    virtual bool has_texture() const = 0;
+    virtual Texture& texture();
+    virtual const Texture& texture() const;
     
-    virtual RefPtr<Texture> texture() = 0;
-    virtual const RefPtr<Texture> texture() const = 0;
+    virtual void set_texture(const Texture&);
     
-    virtual void set_texture(const RefPtr<Texture>& texture) = 0;
-    virtual void set_texture(const Path& path) = 0;
-    virtual void set_texture(const GenericResource& res) = 0;
-    
-    virtual Color color() = 0;
-    virtual void set_color(const Color& color) = 0;
+    virtual Color color() const;
+    virtual void set_color(const Color& color);
 
 protected:
+    
+    Texture m_texture;
+    Color m_color;
 };
 
 #endif // MATERIAL_H

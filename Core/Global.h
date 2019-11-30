@@ -27,6 +27,9 @@ using UnorderedSet = std::unordered_set<_T>;
 template<typename _KeyT, typename _ValueT>
 using UnorderedMap = std::unordered_map<_KeyT, _ValueT>;
 
+template<typename _T, SizeT size>
+using Array = std::array<_T, size>;
+
 #include "DebugTools.h"
 #include "GUID.h"
 #include "Memory.h"
@@ -34,23 +37,8 @@ using UnorderedMap = std::unordered_map<_KeyT, _ValueT>;
 
 #include "../String/String.h"
 
-static inline sf::String to_sf_string(const String& str)
-{
-    return sf::String(str.c_str());
-}
-
-static inline sf::String to_sf_string(const StringView& str)
-{
-    return sf::String(str.c_str());
-}
-
-static inline sf::Vector2f to_sf_vector2f(const vec2& v)
-{
-    return sf::Vector2f(v.x, v.y);
-}
-
 #if VERBOSE_DBG
-#define verbose(x) std::cout << "VERBOSE: " << x << std::endl
+#define verbose(x) std::cout << ANSI_BOLD << "VERBOSE: " << x << ANSI_RESET << std::endl
 #else
 #define verbose(x)
 #endif
