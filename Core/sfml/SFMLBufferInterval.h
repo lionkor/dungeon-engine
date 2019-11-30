@@ -6,6 +6,10 @@
 
 struct SFMLBufferInterval : public GUID
 {
+    SFMLBufferInterval(SizeT index, SizeT count, SFMLMaterial mat)
+        : index(index), count(count), material(mat)
+    {
+    }
     SizeT index;
     SizeT count;
     SFMLMaterial material;

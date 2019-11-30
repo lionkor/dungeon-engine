@@ -3,7 +3,8 @@
 
 #include "Global.h"
 #include "Keys.h"
-#include "Rendering/Polygon.h"
+#include "Rendering/Primitives.h"
+#include "Rendering/Sprite.h"
 
 class Material;
 class Texture;
@@ -23,6 +24,7 @@ public:
     virtual void set_window_title(const StringView& title) = 0;
     virtual void set_window_size(const vec2& size) = 0;
 
+    virtual GUID register_sprite(const Sprite& sprite) = 0;
     virtual GUID register_polygon(const Polygon& polygon) = 0;
 
     virtual GUID register_rectangle(vec2 top_left, vec2 w_h,
@@ -40,6 +42,9 @@ public:
     {
         // FIXME not used
     }
+    
+    virtual RefPtr<Material> create_material(const RefPtr<Texture>&, Color) = 0;
+    virtual RefPtr<Texture> create_texture() = 0;
 
 protected:
     UnorderedSet<Key> m_pressed_keys;

@@ -29,13 +29,13 @@ public:
     void adopt_entity(_Args&&... args)
     {
         auto e = _EntityT::construct(*this, std::forward(args)...);
-        m_entities.emplace(std::pair { e->int_guid(), std::move(e) });
+        m_entities.emplace(std::pair { e->guid(), std::move(e) });
     }
-    RawPtr<Entity> get_entity(GUID guid);
+    RawPtr<Entity> get_entity(GUID guid);    
 
 protected:
     Application& m_application;
-    UnorderedMap<ptr_t, OwnPtr<Entity>> m_entities;
+    UnorderedMap<GUID, OwnPtr<Entity>> m_entities;
 };
 
 #endif // STATE_H

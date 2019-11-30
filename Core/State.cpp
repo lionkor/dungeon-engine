@@ -15,6 +15,4 @@ Renderer& State::renderer() { return m_application.window().renderer(); }
 
 const Renderer& State::renderer() const { return m_application.window().renderer(); }
 
-
-
 RawPtr<Entity> State::get_entity(GUID guid) { NOTIMPL }

@@ -24,6 +24,16 @@ const Transform& Entity::transform() const
     return m_transform;
 }
 
+State& Entity::state()
+{
+    return m_state;
+}
+
+const State& Entity::state() const
+{
+    return m_state;
+}
+
 void Entity::serialize(File& ifile)
 {
     NOTIMPL

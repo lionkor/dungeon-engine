@@ -18,6 +18,7 @@ add_executable(dungeon-engine main.cpp
     Core/State.cpp
     Core/ECS/Entity.cpp
     Core/ECS/Transform.cpp
+    Core/ECS/SpriteRenderComponent.cpp
     Core/sfml/SFMLBackend.cpp
     Core/sfml/SFMLMaterial.cpp
     Core/sfml/SFMLTexture.cpp

@@ -14,6 +14,8 @@ public:
     
     virtual void draw();
 
+    RefPtr<Material> create_material(const RefPtr<Texture>&, Color);
+    
 protected:
     Renderer(Window& window, Application& app);
     

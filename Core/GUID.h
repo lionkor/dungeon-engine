@@ -10,7 +10,7 @@ class GUID
 public:
     GUID();
     ~GUID();
-    
+
     GUID& guid();
 
     constexpr const GUID& guid() const { return *this; }
@@ -30,5 +30,14 @@ public:
 private:
     std::uintptr_t m_raw;
 };
+
+namespace std
+{
+template<>
+struct hash<GUID>
+{
+    std::size_t operator()(const GUID& s) const noexcept { return s.int_guid(); }
+};
+} // namespace std
 
 #endif // GUID_H

@@ -2,6 +2,7 @@
 #define GLOBAL_H
 
 #define DEBUG 1
+#define VERBOSE_DBG 1
 
 #include <utility>
 #include <cassert>
@@ -47,5 +48,11 @@ static inline sf::Vector2f to_sf_vector2f(const vec2& v)
 {
     return sf::Vector2f(v.x, v.y);
 }
+
+#if VERBOSE_DBG
+#define verbose(x) std::cout << "VERBOSE: " << x << std::endl
+#else
+#define verbose(x)
+#endif
 
 #endif // GLOBAL_H

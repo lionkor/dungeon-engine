@@ -11,6 +11,8 @@ public:
     
     virtual void load_from_file(const Path& path) override;
     virtual void load_from_memory(const GenericResource& res) override;
+    
+    RefPtr<sf::Texture> sf_texture() { return m_texture; }
 protected:
     RefPtr<sf::Texture> m_texture;
 };

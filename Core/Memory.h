@@ -41,6 +41,18 @@ public:
     inline bool is_not_null() const { return this->get(); }
     inline operator bool() const { return this->get(); }
 
+    template<typename _TConvertType>
+    _TConvertType& as()
+    {
+        return reinterpret_cast<_TConvertType>(this->get());
+    }
+    
+    template<typename _TConvertType>
+    const _TConvertType& as() const
+    {
+        return reinterpret_cast<_TConvertType>(this->get());
+    }
+
     inline RawPtr<_T> raw() { return this->get(); }
     inline const RawPtr<_T> raw() const { return this->get(); }
     inline WeakPtr<_T> weak_ptr() { return WeakPtr<_T>(this); }

@@ -7,9 +7,10 @@
 class SFMLMaterial : public Material
 {
 public:
-    SFMLMaterial();
+    SFMLMaterial(const RefPtr<Texture>& tex, Color color);
     
     virtual bool has_texture() const override;
+    // FIXME: Interface is garbage
     virtual RefPtr<Texture> texture() override;
     virtual const RefPtr<Texture> texture() const override;
     virtual void set_texture(const RefPtr<Texture>& texture) override;
@@ -20,7 +21,7 @@ public:
     
     virtual sf::Color sf_color();
 protected:
-    sf::Texture m_texture;
+    RefPtr<sf::Texture> m_texture;
     sf::Color m_color;
 };
 

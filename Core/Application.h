@@ -23,10 +23,15 @@ public:
     
     State& state();
     const State& state() const;
-
+    
+    
+    static Application& the() { return *Application::s_the_application; }
+    
 protected:
     Application(BackendImplementation type);
 
+    static OwnPtr<Application> s_the_application;
+    
     OwnPtr<Window> m_window;
     OwnPtr<State> m_current_state;
     bool m_is_running;
