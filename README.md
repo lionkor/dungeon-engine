@@ -1,5 +1,5 @@
 # dungeon-engine
-A C++ Game Engine for my game, WIP-Title "Dungeon". The entire development process is being live-streamed on twitch.tv/LeedOff.
+A C++ Game Engine for my game, WIP-Title "Dungeon". The entire development process is being live-streamed on [twitch.tv/LeedOff](https://www.twitch.tv/LeedOff).
 
 ## Contributing
 
