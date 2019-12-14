@@ -20,7 +20,8 @@ void SFMLTexture::load_from_memory(const GenericResource& res)
 RefPtr<sf::Texture> SFMLTexture::sf_texture() const
 {
     auto tex = RefPtr<sf::Texture>::make();
-    tex->loadFromImage(*m_image);
+    bool rc  = tex->loadFromImage(*m_image);
+    ASSERT(rc);
     return tex;
 }
 

@@ -27,12 +27,12 @@ public:
     virtual GUID submit(const Polygon& polygon) override;
 
 protected:
-    UnorderedMap<GUID, SFMLBufferInterval>           m_buffer_intervals;
-    Vector<sf::Sprite>                               m_sprites;
-    OwnPtr<sf::RenderWindow>                         m_render_window;
-    Vector<std::pair<sf::VertexArray, sf::Texture*>> m_varrays;
-    sf::VertexArray                                  m_vertexarray;
-    sf::Event                                        event;
+    UnorderedMap<GUID, std::pair<sf::Sprite, RefPtr<sf::Texture>>> m_sprites;
+    Vector<std::pair<sf::VertexArray, sf::Texture*>>               m_varrays;
+    UnorderedMap<GUID, SFMLBufferInterval>                         m_buffer_intervals;
+    OwnPtr<sf::RenderWindow>                                       m_render_window;
+    sf::VertexArray                                                m_vertexarray;
+    sf::Event                                                      event;
 };
 
 #endif // SFMLRENDERINGBACKEND_H

@@ -4,6 +4,7 @@
 #include "../Global.h"
 #include "../IO/Path.h"
 #include "../Application.h"
+#include "../GenericResource.h"
 #include "Color.h"
 
 class GenericResource;

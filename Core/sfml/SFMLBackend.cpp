@@ -88,9 +88,14 @@ void SFMLBackend::draw()
 
     for (auto& varray : m_varrays)
     {
-        std::cout << varray.second->getSize().x << ", " << varray.second->getSize().y
-                  << std::endl;
         m_render_window->draw(varray.first, sf::RenderStates(varray.second));
+    }
+
+    // FIXME: add frustrum culling :)
+
+    for (auto& pair : m_sprites)
+    {
+        m_render_window->draw(pair.second.first);
     }
 }
 
@@ -120,25 +125,21 @@ void SFMLBackend::set_window_size(const glm::vec2& size)
 
 GUID SFMLBackend::submit(const Sprite& sprite)
 {
-    // sf::Sprite spr;
     auto texture =
         sprite.material.as<SFMLMaterial>().texture().as<SFMLTexture>().sf_texture();
 
-    /*spr.setTextureRect(sf::IntRect(sprite.rectangle.position.x,
-                                   sprite.rectangle.position.y, sprite.rectangle.size.x,
-                                   sprite.rectangle.size.y));*/
+    sf::Sprite sp(*texture);
 
-    // m_sprites.push_back(spr);
+    sp.setPosition(to_sf_vector2f(sprite.rectangle.position));
 
-    // FIXME: This is shit.
-    return submit(Polygon {
-        { Triangle { { sprite.rectangle.position,
-                       sprite.rectangle.position + vec2(sprite.rectangle.size.x, 0),
-                       sprite.rectangle.position + vec2(0, sprite.rectangle.size.y) } },
-          Triangle { { sprite.rectangle.position + vec2(sprite.rectangle.size.x, 0),
-                       sprite.rectangle.position + sprite.rectangle.size,
-                       sprite.rectangle.position + vec2(0, sprite.rectangle.size.y) } } },
-        sprite.material });
+    float x_m = sprite.rectangle.size.x / sp.getGlobalBounds().width;
+    float y_m = sprite.rectangle.size.y / sp.getGlobalBounds().height;
+
+    sp.setScale({ x_m, y_m });
+
+    m_sprites.insert_or_assign(sprite.guid(), std::pair(sp, texture));
+
+    return sprite.guid();
 }
 
 

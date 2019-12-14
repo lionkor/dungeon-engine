@@ -21,12 +21,10 @@ public:
 protected:
     Person(State& e) : Entity(e, vec2 { 300, 300 })
     {
-        auto& c = add_component<SpriteRenderComponent>(
-            Sprite(Material::construct(
-                       Texture::construct(
-                           "/home/lion/src/games/dungeon/res/textures/wall.png"_sv),
-                       Color(255, 0, 255, 255)),
-                   Rectangle(m_transform.position(), { 100, 100 })));
+        auto& c = add_component<SpriteRenderComponent>(Sprite(
+            Material::construct(Texture::construct(Path("res/textures/ground.png")),
+                                Color(255, 0, 255, 255)),
+            Rectangle(m_transform.position(), { 100, 100 })));
     }
 };
 

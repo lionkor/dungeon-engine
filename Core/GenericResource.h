@@ -9,7 +9,7 @@ class GenericResource
 {
 public:
     GenericResource();
-    GenericResource(const Path& path);
+    explicit GenericResource(const Path& path);
     virtual ~GenericResource();
 
     // FIXME: Keep deleted?

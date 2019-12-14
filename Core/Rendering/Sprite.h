@@ -5,11 +5,10 @@
 #include "Material.h"
 #include "Primitives.h"
 
-struct Sprite
+struct Sprite : public GUID
 {
     // Sprite() : material(nullptr), rectangle(0, 0, 0, 0) {}
-    Sprite(const RefPtr<Material>& mat, Rectangle rect)
-        : material(std::move(mat)), rectangle(rect)
+    Sprite(const RefPtr<Material>& mat, Rectangle rect) : material(mat), rectangle(rect)
     {
     }
 
