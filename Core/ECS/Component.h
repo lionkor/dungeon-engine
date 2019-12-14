@@ -11,7 +11,7 @@ public:
     Component(Entity& entity) : m_entity(entity) {}
     virtual ~Component() {}
 
-    Entity& entity() { return m_entity; }
+    Entity&       entity() { return m_entity; }
     const Entity& entity() const { return m_entity; }
 
     virtual void update(float) = 0;

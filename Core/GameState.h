@@ -7,9 +7,10 @@
 class GameState : public State
 {
     OBJECT_CAST_CTOR(GameState, State, override);
+
 public:
     virtual void update(float dt) override;
-    
+
 protected:
     GameState();
 };

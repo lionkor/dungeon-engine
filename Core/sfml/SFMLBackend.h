@@ -5,6 +5,11 @@
 #include "../Backend.h"
 #include "SFMLBufferInterval.h"
 
+extern sf::String   to_sf_string(const String& str);
+extern sf::String   to_sf_string(const StringView& str);
+extern sf::Vector2f to_sf_vector2f(const vec2& v);
+extern sf::Color    to_sf_color(const Color& v);
+
 class SFMLBackend : public Backend
 {
 public:
@@ -22,11 +27,12 @@ public:
     virtual GUID submit(const Polygon& polygon) override;
 
 protected:
-    UnorderedMap<GUID, SFMLBufferInterval> m_buffer_intervals;
-    Vector<sf::Sprite> m_sprites;
-    OwnPtr<sf::RenderWindow> m_render_window;
-    sf::VertexArray m_vertexarray;
-    sf::Event event;
+    UnorderedMap<GUID, SFMLBufferInterval>           m_buffer_intervals;
+    Vector<sf::Sprite>                               m_sprites;
+    OwnPtr<sf::RenderWindow>                         m_render_window;
+    Vector<std::pair<sf::VertexArray, sf::Texture*>> m_varrays;
+    sf::VertexArray                                  m_vertexarray;
+    sf::Event                                        event;
 };
 
 #endif // SFMLRENDERINGBACKEND_H

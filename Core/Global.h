@@ -6,7 +6,7 @@
 
 #include <utility>
 #include <cassert>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <iostream>
 #include <unordered_set>
 #include <unordered_map>
@@ -42,5 +42,10 @@ using Array = std::array<_T, size>;
 #else
 #define verbose(x)
 #endif
+
+enum class BackendImplementation
+{
+    SFML,
+};
 
 #endif // GLOBAL_H

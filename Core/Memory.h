@@ -17,7 +17,7 @@ public:
 
     inline bool is_null() const { return !this->get(); }
     inline bool is_not_null() const { return this->get(); }
-    inline operator bool() const { return this->get(); }
+    inline      operator bool() const { return this->get(); }
 
     inline const RawPtr<_T> raw() const { return this->get(); }
 };
@@ -39,7 +39,7 @@ public:
 
     inline bool is_null() const { return !this->get(); }
     inline bool is_not_null() const { return this->get(); }
-    inline operator bool() const { return this->get(); }
+    inline      operator bool() const { return this->get(); }
 
     inline RefPtr& operator=(const RefPtr& ptr)
     {
@@ -50,18 +50,30 @@ public:
     template<typename _TConvertType>
     _TConvertType& as()
     {
-        return reinterpret_cast<_TConvertType>(this->get());
+        return *(_TConvertType*)(this->get());
+    }
+
+    template<typename _TConvertType>
+    _TConvertType* as_ptr()
+    {
+        return (_TConvertType*)(this->get());
+    }
+
+    template<typename _TConvertType>
+    const _TConvertType* as_ptr() const
+    {
+        return (_TConvertType*)(this->get());
     }
 
     template<typename _TConvertType>
     const _TConvertType& as() const
     {
-        return reinterpret_cast<_TConvertType>(this->get());
+        return *(const _TConvertType*)(this->get());
     }
 
-    inline RawPtr<_T> raw() { return this->get(); }
+    inline RawPtr<_T>       raw() { return this->get(); }
     inline const RawPtr<_T> raw() const { return this->get(); }
-    inline WeakPtr<_T> weak_ptr() { return WeakPtr<_T>(this); }
+    inline WeakPtr<_T>      weak_ptr() { return WeakPtr<_T>(this); }
 };
 
 template<typename _T>
@@ -81,9 +93,9 @@ public:
 
     inline bool is_null() const { return !this->get(); }
     inline bool is_not_null() const { return this->get(); }
-    inline operator bool() const { return this->get(); }
+    inline      operator bool() const { return this->get(); }
 
-    inline RawPtr<_T> raw() { return this->get(); }
+    inline RawPtr<_T>       raw() { return this->get(); }
     inline const RawPtr<_T> raw() const { return this->get(); }
 };
 

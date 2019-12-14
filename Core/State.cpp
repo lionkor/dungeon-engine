@@ -3,4 +3,7 @@
 #include "Window.h"
 #include "Rendering/Renderer.h"
 
-RawPtr<Entity> State::get_entity(GUID guid) { NOTIMPL }
+RawPtr<Entity> State::get_entity(GUID guid)
+{
+    NOTIMPL
+}

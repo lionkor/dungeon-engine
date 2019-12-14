@@ -3,11 +3,12 @@
 
 #include "../Global.h"
 
-class Path : public std::filesystem::path
+class Path : public std::experimental::filesystem::path
 {
 public:
     Path(const StringView& path_string);
     Path(const String& path_string);
+
 private:
 };
 

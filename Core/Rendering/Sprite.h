@@ -7,11 +7,14 @@
 
 struct Sprite
 {
-    Sprite() : material(), rectangle({ { 0, 0 }, { 0, 0 } }) {}
-    Sprite(Material mat, Rectangle rect) : material(mat), rectangle(rect) {}
+    // Sprite() : material(nullptr), rectangle(0, 0, 0, 0) {}
+    Sprite(const RefPtr<Material>& mat, Rectangle rect)
+        : material(std::move(mat)), rectangle(rect)
+    {
+    }
 
-    Material material;
-    Rectangle rectangle;
+    RefPtr<Material> material;
+    Rectangle        rectangle;
 };
 
 #endif // SPRITE_H

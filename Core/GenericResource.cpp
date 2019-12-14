@@ -2,15 +2,12 @@
 
 GenericResource::GenericResource()
 {
-    
 }
 
-GenericResource::GenericResource(const Path &path)
+GenericResource::GenericResource(const Path& path)
 {
-    
 }
 
-GenericResource::~GenericResource() 
+GenericResource::~GenericResource()
 {
-    
 }

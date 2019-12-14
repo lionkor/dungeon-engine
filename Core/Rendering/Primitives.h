@@ -20,7 +20,7 @@ struct Rectangle
 struct Polygon
 {
     Vector<Triangle> triangles;
-    Material material;
+    RefPtr<Material> material;
 };
 
 #endif // TRIANGLE_H

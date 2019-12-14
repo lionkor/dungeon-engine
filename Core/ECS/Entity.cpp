@@ -1,7 +1,6 @@
 #include "Entity.h"
 
-Entity::Entity(State& state, vec2 position)
-    : m_state(state), m_transform(*this, position)
+Entity::Entity(State& state, vec2 position) : m_state(state), m_transform(*this, position)
 {
 }
 

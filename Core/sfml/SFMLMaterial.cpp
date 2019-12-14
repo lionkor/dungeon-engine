@@ -1,40 +1,18 @@
 #include "SFMLMaterial.h"
 #include "SFMLTexture.h"
+#include "SFMLBackend.h"
 
 
-SFMLMaterial::SFMLMaterial(const RefPtr<Texture>& tex, Color color)
-    : m_texture(nullptr), m_color({ color.r, color.g, color.b, color.a })
+SFMLMaterial::SFMLMaterial(const RefPtr<Texture>& tex, const Color& col)
+    : Material(std::move(tex), col)
 {
-    if (tex.is_not_null())
-    {
-        RawPtr<SFMLTexture> ptr = reinterpret_cast<SFMLTexture*>(tex.get());
-        m_texture = ptr->sf_texture();
-    }
 }
 
-bool SFMLMaterial::has_texture() const { NOTIMPL }
-
-RefPtr<Texture> SFMLMaterial::texture()
+sf::Texture SFMLMaterial::sf_texture()
 {
-    NOTIMPL
 }
 
-const RefPtr<Texture> SFMLMaterial::texture() const { NOTIMPL }
-
-void SFMLMaterial::set_texture(const RefPtr<Texture>& texture) { NOTIMPL }
-
-void SFMLMaterial::set_texture(const Path& path) { NOTIMPL }
-
-void SFMLMaterial::set_texture(const GenericResource& res) { NOTIMPL }
-
-Color SFMLMaterial::color()
+sf::Color SFMLMaterial::sf_color()
 {
-    return Color(m_color.r, m_color.g, m_color.b, m_color.a);
+    return to_sf_color(m_color);
 }
-
-void SFMLMaterial::set_color(const Color& color)
-{
-    m_color = sf::Color(color.r, color.g, color.b, color.a);
-}
-
-sf::Color SFMLMaterial::sf_color() { return m_color; }

@@ -1,6 +1,7 @@
 #include "Core/Global.h"
 #include "Core/Application.h"
 #include "Core/GameState.h"
+#include "Core/Window.h"
 #include "Core/ECS/SpriteRenderComponent.h"
 
 class Person : public Entity
@@ -20,8 +21,12 @@ public:
 protected:
     Person(State& e) : Entity(e, vec2 { 300, 300 })
     {
-        auto& c = add_component<SpriteRenderComponent>();
-        c.set_sprite(Sprite(Material(Texture("/home/lion/src/games/dungeon/res/textures/wall.png"_sv), Color()), Rectangle(m_transform.position(), { 100, 100 })));
+        auto& c = add_component<SpriteRenderComponent>(
+            Sprite(Material::construct(
+                       Texture::construct(
+                           "/home/lion/src/games/dungeon/res/textures/wall.png"_sv),
+                       Color(255, 0, 255, 255)),
+                   Rectangle(m_transform.position(), { 100, 100 })));
     }
 };
 

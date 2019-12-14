@@ -27,4 +27,6 @@ Renderer& Renderer::the()
     return *Renderer::s_the_renderer;
 }
 
-Renderer::Renderer() {}
+Renderer::Renderer()
+{
+}

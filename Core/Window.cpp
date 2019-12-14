@@ -1,6 +1,7 @@
 #include "Window.h"
-#include "Backend.h"
+
 #include "Application.h"
+#include "Backend.h"
 #include "sfml/SFMLBackend.h"
 
 OwnPtr<Window> Window::s_the_window;
@@ -12,7 +13,10 @@ void Window::update(float dt)
     m_backend->update(dt);
 }
 
-void Window::draw() { Renderer::the().draw(); }
+void Window::draw()
+{
+    Renderer::the().draw();
+}
 
 Backend& Window::backend()
 {
@@ -26,13 +30,25 @@ const Backend& Window::backend() const
     return *m_backend;
 }
 
-void Window::set_title(const StringView& title) { m_backend->set_window_title(title); }
+void Window::set_title(const StringView& title)
+{
+    m_backend->set_window_title(title);
+}
 
-void Window::set_size(const glm::vec2& size) { m_backend->set_window_size(size); }
+void Window::set_size(const glm::vec2& size)
+{
+    m_backend->set_window_size(size);
+}
 
-void Window::close() { Application::the().shutdown(); }
+void Window::close()
+{
+    Application::the().shutdown();
+}
 
-bool Window::is_mouse_down() { NOTIMPL }
+bool Window::is_mouse_down()
+{
+    NOTIMPL
+}
 
 bool Window::is_key_pressed(Key key)
 {
@@ -54,9 +70,9 @@ Window::Window(BackendImplementation type) : m_backend(/* what should we pass ba
 {
     switch (type)
     {
-        case BackendImplementation::SFML:
-            m_backend = OwnPtr<Backend>(new SFMLBackend());
-            break;
+    case BackendImplementation::SFML:
+        m_backend = OwnPtr<Backend>(new SFMLBackend());
+        break;
     }
     ASSERT(m_backend);
 }

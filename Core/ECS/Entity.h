@@ -17,18 +17,18 @@ public:
 
     virtual void update(float);
 
-    Transform& transform();
+    Transform&       transform();
     const Transform& transform() const;
 
-    State& state();
+    State&       state();
     const State& state() const;
 
     template<typename _T, typename... _Args>
     auto& add_component(_Args&&... args);
 
 protected:
-    State& m_state;
-    Transform m_transform;
+    State&                    m_state;
+    Transform                 m_transform;
     Vector<RefPtr<Component>> m_components;
 
     // Serializable interface
@@ -41,7 +41,7 @@ template<typename _T, typename... _Args>
 auto& Entity::add_component(_Args&&... args)
 {
     // FIXME: Make sure we don't add components that already exist
-    auto c = RefPtr<Component>(new _T(*this, std::forward(args)...));
+    auto c = RefPtr<Component>(new _T(*this, std::forward<_Args>(args)...));
     ASSERT(c.is_not_null());
     m_components.push_back(c);
     return reinterpret_cast<_T&>(*c);

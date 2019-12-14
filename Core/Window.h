@@ -5,11 +5,6 @@
 #include "Rendering/Renderer.h"
 #include "Keys.h"
 
-enum class BackendImplementation
-{
-    SFML,
-};
-
 class Application;
 
 class Window
@@ -17,25 +12,25 @@ class Window
 public:
     virtual void update(float dt);
     virtual void draw();
-    
-    Backend& backend();
+
+    Backend&       backend();
     const Backend& backend() const;
 
     void set_title(const StringView& title);
     void set_size(const vec2& size);
     void close();
-    
+
     bool is_mouse_down();
     bool is_key_pressed(Key key);
 
     static Window& the();
-    
+
 protected:
     static OwnPtr<Window> s_the_window;
-    
+
     Window(BackendImplementation type);
 
-    
+
     OwnPtr<Backend> m_backend;
 };
 

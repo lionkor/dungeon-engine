@@ -27,10 +27,10 @@ class ImageFile : public File
 public:
     ImageFile(const Path& path);
 
-    Texture create_texture();
+    RefPtr<Texture> create_texture();
 
 protected:
-    sf::Image m_image;
+    Path m_path;
 };
 
 #endif // FILE_H

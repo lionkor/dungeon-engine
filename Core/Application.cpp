@@ -1,9 +1,13 @@
 #include "Application.h"
 #include "GameState.h"
+#include "Window.h"
 
 OwnPtr<Application> Application::s_the_application;
 
-void Application::shutdown() { m_is_running = false; }
+void Application::shutdown()
+{
+    m_is_running = false;
+}
 
 void Application::run()
 {
@@ -22,9 +26,15 @@ void Application::run()
     }
 }
 
-State& Application::state() { return *m_current_state; }
+State& Application::state()
+{
+    return *m_current_state;
+}
 
-const State& Application::state() const { return *m_current_state; }
+const State& Application::state() const
+{
+    return *m_current_state;
+}
 
 Application& Application::the()
 {

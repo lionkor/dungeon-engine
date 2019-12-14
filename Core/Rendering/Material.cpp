@@ -1,46 +1,29 @@
 #include "Material.h"
 #include "../Application.h"
+#include "../sfml/SFMLMaterial.h"
 
-Material::Material()
-{
-    
-}
-
-Material::Material(const Texture& tex)
-    : m_texture(tex)
-{
-}
-
-Material::Material(const Color& col)
-    : m_color(col)
-{
-    
-}
-
-Material::Material(const Texture& tex, const Color& col)
+Material::Material(const RefPtr<Texture>& tex, const Color& col)
     : m_texture(tex), m_color(col)
 {
-    
+}
+
+Material* new_sfml_material(const RefPtr<Texture>& tex, const Color& col)
+{
+    return new SFMLMaterial(std::move(tex), col);
 }
 
 Material::~Material()
 {
-    
 }
 
-Texture& Material::texture()
+RefPtr<Texture> Material::texture()
 {
     return m_texture;
 }
 
-const Texture& Material::texture() const
+const RefPtr<Texture> Material::texture() const
 {
     return m_texture;
-}
-
-void Material::set_texture(const Texture& tex)
-{
-    m_texture = tex;
 }
 
 Color Material::color() const
@@ -52,4 +35,3 @@ void Material::set_color(const Color& color)
 {
     m_color = color;
 }
-
