@@ -2,7 +2,8 @@ project(dungeon-engine)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS 2a)
-set(CMAKE_CXX_COMPILER clang++)
+set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 
 add_executable(dungeon-engine main.cpp
     Core/GenericResource.cpp
@@ -24,4 +25,12 @@ add_executable(dungeon-engine main.cpp
     Core/sfml/SFMLTexture.cpp
 )
 
-target_link_libraries(dungeon-engine sfml-window sfml-graphics sfml-system sfml-audio)
+include_directories(include)
+
+target_link_libraries(dungeon-engine 
+    sfml-window 
+    sfml-graphics 
+    sfml-system 
+    sfml-audio 
+    String -static
+)
