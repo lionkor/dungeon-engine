@@ -7,7 +7,7 @@ if [ ! -d String ]; then
     return 1
 fi
 
-if [ ! -f include/String ]; then
+if [ ! -s include/String ]; then
     cd String
     mkdir -p bin
     cd bin

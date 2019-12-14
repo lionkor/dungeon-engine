@@ -1,3 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+
+include_directories(include)
+link_directories(lib)
+
 project(dungeon-engine)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -25,12 +30,13 @@ add_executable(dungeon-engine main.cpp
     Core/sfml/SFMLTexture.cpp
 )
 
-include_directories(include)
 
 target_link_libraries(dungeon-engine 
     sfml-window 
     sfml-graphics 
     sfml-system 
-    sfml-audio 
-    String -static
+    sfml-audio
+    stdc++fs
+    String
 )
+
