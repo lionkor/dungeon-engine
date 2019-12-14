@@ -35,7 +35,7 @@ using Array = std::array<_T, size>;
 #include "Memory.h"
 #include "RawPtr.h"
 
-#include "../String/String.h"
+#include "String/String.h"
 
 #if VERBOSE_DBG
 #define verbose(x) std::cout << ANSI_BOLD << "VERBOSE: " << x << ANSI_RESET << std::endl
