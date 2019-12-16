@@ -37,8 +37,13 @@ using Array = std::array<_T, size>;
 
 #include "String/String.h"
 
+#include <string.h>
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+
 #if VERBOSE_DBG
-#define verbose(x) std::cout << ANSI_BOLD << "VERBOSE: " << x << ANSI_RESET << std::endl
+#define verbose(x)                                                                       \
+    std::cout << ANSI_BOLD << "VERBOSE " << __FILENAME__ << ":" << __LINE__ << ": " << x \
+              << ANSI_RESET << std::endl
 #else
 #define verbose(x)
 #endif

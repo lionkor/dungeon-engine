@@ -1,6 +1,7 @@
 #include "SFMLBackend.h"
 #include "SFMLMaterial.h"
 #include "SFMLTexture.h"
+#include "../ECS/SpriteRenderComponent.h"
 #include "../Window.h"
 
 sf::String to_sf_string(const String& str)
@@ -142,6 +143,29 @@ GUID SFMLBackend::submit(const Sprite& sprite)
     return sprite.guid();
 }
 
+GUID SFMLBackend::submit(const SpriteRenderComponent& sprite_render_comp)
+{
+    const Sprite& sprite = sprite_render_comp.sprite();
+    const Entity& entity = sprite_render_comp.entity();
+
+    auto texture =
+        sprite.material.as<SFMLMaterial>().texture().as<SFMLTexture>().sf_texture();
+
+    sf::Sprite sp(*texture);
+
+    // SprRC positions are relative to the entity's position
+    sp.setPosition(
+        to_sf_vector2f(entity.transform().position() + sprite.rectangle.position));
+
+    float x_m = sprite.rectangle.size.x / sp.getGlobalBounds().width;
+    float y_m = sprite.rectangle.size.y / sp.getGlobalBounds().height;
+
+    sp.setScale({ x_m, y_m });
+
+    m_sprites.insert_or_assign(sprite.guid(), std::pair(sp, texture));
+
+    return sprite_render_comp.guid();
+}
 
 GUID SFMLBackend::submit(const Polygon& polygon)
 {

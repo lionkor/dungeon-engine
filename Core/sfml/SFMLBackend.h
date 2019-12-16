@@ -24,6 +24,7 @@ public:
     virtual void set_window_size(const glm::vec2& size) override;
 
     virtual GUID submit(const Sprite& sprite) override;
+    virtual GUID submit(const SpriteRenderComponent& sprite_render_comp);
     virtual GUID submit(const Polygon& polygon) override;
 
 protected:

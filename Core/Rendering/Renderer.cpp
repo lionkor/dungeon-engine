@@ -17,6 +17,11 @@ GUID Renderer::submit(const Sprite& spr)
     return Window::the().backend().submit(spr);
 }
 
+GUID Renderer::submit(const SpriteRenderComponent& sprc)
+{
+    return Window::the().backend().submit(sprc);
+}
+
 Renderer& Renderer::the()
 {
     if (!Renderer::s_the_renderer)

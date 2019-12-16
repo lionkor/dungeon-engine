@@ -6,7 +6,6 @@ void SFMLTexture::load_from_file(const Path& path)
 {
     ASSERT(m_image.is_not_null());
     bool rc = m_image->loadFromFile(path);
-    std::cout << rc << std::endl;
     ASSERT(rc);
 }
 

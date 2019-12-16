@@ -8,7 +8,11 @@
 struct Sprite : public GUID
 {
     // Sprite() : material(nullptr), rectangle(0, 0, 0, 0) {}
-    Sprite(const RefPtr<Material>& mat, Rectangle rect) : material(mat), rectangle(rect)
+    Sprite(RefPtr<Material> mat, Rectangle rect) : material(mat), rectangle(rect) {}
+
+    Sprite(const Path& texture_path, Rectangle rect, const Color& color = Color())
+        : material(Material::construct(Texture::construct(texture_path), color)),
+          rectangle(rect)
     {
     }
 

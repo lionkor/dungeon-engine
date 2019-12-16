@@ -3,10 +3,11 @@
 #include "../State.h"
 #include "../Rendering/Renderer.h"
 
+// ATTENTION: spr's position is relative!
 SpriteRenderComponent::SpriteRenderComponent(Entity& entity, const Sprite& spr)
     : Component(entity), m_sprite(spr)
 {
-    Renderer::the().submit(m_sprite);
+    Renderer::the().submit(*this);
     // FIXME: push info to renderer lol
 }
 
