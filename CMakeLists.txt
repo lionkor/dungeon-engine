@@ -7,8 +7,9 @@ project(dungeon-engine)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS 2a)
-set(CMAKE_CXX_COMPILER g++)
-set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+set(CMAKE_CXX_COMPILER clang++)
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 add_executable(dungeon-engine main.cpp
     Core/GenericResource.cpp
@@ -32,11 +33,15 @@ add_executable(dungeon-engine main.cpp
 
 
 target_link_libraries(dungeon-engine 
-    sfml-window 
-    sfml-graphics 
-    sfml-system 
-    sfml-audio
+    sfml-window-s
+    sfml-graphics-s 
+    sfml-system-s
+    sfml-audio-s
     stdc++fs
+    dl
+    Xrandr
+    udev
+    X11
     String
 )
 
