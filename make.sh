@@ -2,15 +2,12 @@
 
 mkdir -p bin include lib
 
-if [ ! -d String ]; then
-    echo "String directory not found. Make sure you cloned the repo with --recursive"
-    return 1
+if [ ! -d String ] || [ ! -d SFML ] || [ ! -d glew ] || [ ! -d glfw ]; then
+    git submodule update --init
+    rm -r include lib
 fi
 
-if [ ! -d SFML ]; then
-    echo "SFML directory not found. Make sure you cloned the repo with --recursive"
-    return 2
-fi
+git submodule update
 
 if [ ! -s include/SFML ]; then
     cd SFML
@@ -30,6 +27,25 @@ if [ ! -s include/String ]; then
     cd ../..
     ln -s ${PWD}/String/include include/String
     ln -s ${PWD}/String/bin/libString.a lib/libString.a
+fi
+
+if [ ! -s include/GL ]; then
+    cd glew/auto
+    make -j 9
+    cd ..
+    make glew.lib.static -j 9
+    cd ..
+    ln -s ${PWD}/glew/lib/* lib/
+    ln -s ${PWD}/glew/include/* include/
+fi
+
+if [ ! -s include/GLFW ]; then
+    cd glfw
+    cmake . -DBUILD_SHARED_LIBS=false
+    make -j 9
+    cd ..
+    ln -s ${PWD}/glfw/src/libglfw3.a lib/
+    ln -s ${PWD}/glfw/include/* include/
 fi
 
 cd bin

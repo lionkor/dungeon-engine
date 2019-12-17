@@ -33,7 +33,7 @@ add_executable(dungeon-engine main.cpp
 
 
 target_link_libraries(dungeon-engine 
-    sfml-window-s
+    sfml-window-s.a
     sfml-graphics-s 
     sfml-system-s
     sfml-audio-s
@@ -42,6 +42,8 @@ target_link_libraries(dungeon-engine
     Xrandr
     udev
     X11
+    glfw3
+    GLEW
     String
 )
 
