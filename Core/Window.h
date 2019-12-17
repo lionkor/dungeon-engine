@@ -16,9 +16,9 @@ public:
     Backend&       backend();
     const Backend& backend() const;
 
-    void set_title(const StringView& title);
-    void set_size(const vec2& size);
-    void close();
+    String title();
+    void   set_title(const StringView& title);
+    void   set_size(const vec2& size);
 
     bool is_mouse_down();
     bool is_key_pressed(Key key);
@@ -29,7 +29,6 @@ protected:
     static OwnPtr<Window> s_the_window;
 
     Window(BackendImplementation type);
-
 
     OwnPtr<Backend> m_backend;
 };

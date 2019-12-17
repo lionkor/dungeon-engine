@@ -1,7 +1,7 @@
 #ifndef KEYS_H
 #define KEYS_H
 
-enum class Key
+enum Key
 {
     A = 0,
     B,

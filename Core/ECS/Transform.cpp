@@ -26,6 +26,11 @@ void Transform::set_rotation(float rot)
     m_rotation = rot;
 }
 
+void Transform::move_by(const vec2& offset)
+{
+    m_position += offset;
+}
+
 float& Transform::rotation()
 {
     return m_rotation;

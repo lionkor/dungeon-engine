@@ -15,6 +15,8 @@ public:
     void set_position(const vec2& pos);
     void set_rotation(float rot);
 
+    void move_by(const vec2& offset);
+
     float&       rotation();
     const float& rotation() const;
 

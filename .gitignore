@@ -1,0 +1,7 @@
+*.src*
+include
+lib
+log.txt
+perf.data
+vgcore*
+String

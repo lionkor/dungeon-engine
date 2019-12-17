@@ -48,6 +48,13 @@ using Array = std::array<_T, size>;
 #define verbose(x)
 #endif
 
+#if DEBUG
+#undef LOG
+#define LOG(x)                                                                           \
+    std::cout << ANSI_CYAN_BOLD << "LOG " << __FILENAME__ << ":" << __LINE__ << ": "     \
+              << x << ANSI_RESET << std::endl
+#endif // DEBUG
+
 enum class BackendImplementation
 {
     SFML,

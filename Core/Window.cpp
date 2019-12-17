@@ -30,6 +30,11 @@ const Backend& Window::backend() const
     return *m_backend;
 }
 
+String Window::title()
+{
+    return m_backend->window_title();
+}
+
 void Window::set_title(const StringView& title)
 {
     m_backend->set_window_title(title);
@@ -40,14 +45,10 @@ void Window::set_size(const glm::vec2& size)
     m_backend->set_window_size(size);
 }
 
-void Window::close()
-{
-    Application::the().shutdown();
-}
-
 bool Window::is_mouse_down()
 {
     NOTIMPL
+    return false;
 }
 
 bool Window::is_key_pressed(Key key)

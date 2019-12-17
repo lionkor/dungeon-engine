@@ -1,8 +1,10 @@
 #include "SFMLBackend.h"
 #include "SFMLMaterial.h"
+#include "../Rendering/Material.h"
 #include "SFMLTexture.h"
 #include "../ECS/SpriteRenderComponent.h"
 #include "../Window.h"
+#include <SFML/Graphics/PrimitiveType.hpp>
 
 sf::String to_sf_string(const String& str)
 {
@@ -28,9 +30,14 @@ SFMLBackend::SFMLBackend()
     : m_render_window(OwnPtr<sf::RenderWindow>::make(sf::VideoMode(800, 600), "Window")),
       m_vertexarray(sf::PrimitiveType::Triangles)
 {
+    m_render_window->setFramerateLimit(-1);
 }
 
-void SFMLBackend::update(float dt)
+SFMLBackend::~SFMLBackend()
+{
+}
+
+void SFMLBackend::update(float)
 {
     // verbose(__PRETTY_FUNCTION__ << " with dt = " << dt);
 
@@ -40,34 +47,19 @@ void SFMLBackend::update(float dt)
         {
         case sf::Event::Closed:
             verbose(__FUNCTION__ << "Closed");
-            Window::the().close();
+            Application::the().shutdown(ShutdownHint::WindowClosed);
             break;
         case sf::Event::KeyPressed:
-            switch (event.key.code)
-            {
-                verbose(__FUNCTION__ << "KeyPressed");
-            case sf::Keyboard::B:
-                m_pressed_keys.insert(Key::B);
-                break;
-            default:
-                NOTIMPL
-                break;
-            }
+            // FIXME: this is dirty :I
+            verbose(__FUNCTION__ << "KeyPressed");
+            set_key_pressed(static_cast<Key>(event.key.code));
             break;
         case sf::Event::KeyReleased:
-            verbose(__FUNCTION__ << "KeyRelease");
-            switch (event.key.code)
-            {
-            case sf::Keyboard::B:
-                m_pressed_keys.erase(Key::B);
-                break;
-            case sf::Keyboard::Escape:
-                Window::the().close();
-                break;
-            default:
-                NOTIMPL
-                break;
-            }
+            verbose(__FUNCTION__ << "KeyReleased");
+            set_key_released(static_cast<Key>(event.key.code));
+            break;
+        case sf::Event::MouseMoved:
+            // don't do anything
             break;
         default:
             NOTIMPL
@@ -92,11 +84,16 @@ void SFMLBackend::draw()
         m_render_window->draw(varray.first, sf::RenderStates(varray.second));
     }
 
+
     // FIXME: add frustrum culling :)
 
     for (auto& pair : m_sprites)
     {
-        m_render_window->draw(pair.second.first);
+        ASSERT(pair.second.texture.is_not_null());
+        pair.second.sprite.setPosition(
+            to_sf_vector2f(pair.second.transform->position() + pair.second.relative_pos));
+
+        m_render_window->draw(pair.second.sprite);
     }
 }
 
@@ -109,6 +106,12 @@ void SFMLBackend::display()
 void SFMLBackend::close_window()
 {
     m_render_window->close();
+}
+
+String SFMLBackend::window_title() const
+{
+    ASSERT(false);
+    /* FIXME this does not exist for SFML */
 }
 
 void SFMLBackend::set_window_title(const StringView& title)
@@ -126,6 +129,7 @@ void SFMLBackend::set_window_size(const glm::vec2& size)
 
 GUID SFMLBackend::submit(const Sprite& sprite)
 {
+    ASSERT(false);
     auto texture =
         sprite.material.as<SFMLMaterial>().texture().as<SFMLTexture>().sf_texture();
 
@@ -138,7 +142,6 @@ GUID SFMLBackend::submit(const Sprite& sprite)
 
     sp.setScale({ x_m, y_m });
 
-    m_sprites.insert_or_assign(sprite.guid(), std::pair(sp, texture));
 
     return sprite.guid();
 }
@@ -162,8 +165,10 @@ GUID SFMLBackend::submit(const SpriteRenderComponent& sprite_render_comp)
 
     sp.setScale({ x_m, y_m });
 
-    m_sprites.insert_or_assign(sprite.guid(), std::pair(sp, texture));
+    SFMLSpriteRenderInfo info { &entity.transform(), sprite.rectangle.position, sp,
+                                texture.get() };
 
+    m_sprites.insert_or_assign(sprite.guid(), info);
     return sprite_render_comp.guid();
 }
 
