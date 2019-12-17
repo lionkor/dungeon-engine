@@ -1,3 +1,6 @@
 [submodule "String"]
 	path = String
 	url = https://github.com/lionkor/String
+[submodule "SFML"]
+	path = SFML
+	url = https://github.com/lionkor/SFML
