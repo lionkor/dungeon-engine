@@ -6,7 +6,7 @@
 #include "../Application.h"
 #include "../GenericResource.h"
 
-extern class Shader* new_gl_shader(const Path& path);
+extern class Shader* new_gl_shader(StringView shader_name);
 
 class Shader
 {
@@ -29,7 +29,10 @@ public:
     }
 
     virtual ~Shader();
-    
+
+    virtual void load() { NOTIMPL }
+    virtual void compile() { NOTIMPL }
+
 protected:
     Shader();
 };

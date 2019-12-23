@@ -4,8 +4,9 @@
 
 
 SFMLMaterial::SFMLMaterial(const RefPtr<Texture>& tex, const Color& col)
-    : Material(std::move(tex), col)
+    : Material(std::move(tex), nullptr, col)
 {
+    ASSERT(false); // we're also passing nullptr there, yikes
 }
 
 sf::Texture SFMLMaterial::sf_texture()

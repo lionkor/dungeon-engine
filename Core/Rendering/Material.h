@@ -4,10 +4,13 @@
 #include "../Global.h"
 #include "Texture.h"
 #include "Color.h"
+#include "Shader.h"
 #include "../Application.h"
 
-extern class Material* new_sfml_material(const RefPtr<Texture>&, const Color&);
-extern class Material* new_gl_material(const RefPtr<Texture>&, const Color&);
+extern class Material* new_sfml_material(const RefPtr<Texture>&, const RefPtr<Shader>&,
+                                         const Color&);
+extern class Material* new_gl_material(const RefPtr<Texture>&, const RefPtr<Shader>&,
+                                       const Color&);
 
 class Material
 {
@@ -34,14 +37,18 @@ public:
     virtual RefPtr<Texture>       texture();
     virtual const RefPtr<Texture> texture() const;
 
+    virtual RefPtr<Shader>       shader();
+    virtual const RefPtr<Shader> shader() const;
+
     virtual Color color() const;
     virtual void  set_color(const Color& color);
 
 protected:
-    Material(const RefPtr<Texture>&, const Color&);
+    Material(const RefPtr<Texture>&, const RefPtr<Shader>&, const Color&);
 
     RefPtr<Texture> m_texture;
     Color           m_color;
+    RefPtr<Shader>  m_shader;
 };
 
 #endif // MATERIAL_H

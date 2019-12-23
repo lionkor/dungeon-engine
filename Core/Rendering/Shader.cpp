@@ -5,9 +5,9 @@ Shader::Shader()
 {
 }
 
-Shader* new_gl_shader(const Path& path)
+Shader* new_gl_shader(StringView shader_name)
 {
-    return new GLShader(path);
+    return new GLShader(shader_name);
 }
 
 Shader::~Shader()

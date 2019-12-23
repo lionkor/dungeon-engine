@@ -21,8 +21,9 @@ public:
 protected:
     Person(State& e) : Entity(e, vec2 { 300, 300 })
     {
-        add_component<SpriteRenderComponent>(
-            Sprite(Path("res/textures/ground.png"), Rectangle({ 0, 0 }, { 100, 100 })));
+        add_component<SpriteRenderComponent>(Sprite(Path("res/textures/ground.png"),
+                                                    "simple",
+                                                    Rectangle({ 0, 0 }, { 100, 100 })));
     }
 };
 

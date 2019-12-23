@@ -7,11 +7,12 @@
 
 struct Sprite : public GUID
 {
-    // Sprite() : material(nullptr), rectangle(0, 0, 0, 0) {}
     Sprite(RefPtr<Material> mat, Rectangle rect) : material(mat), rectangle(rect) {}
 
-    Sprite(const Path& texture_path, Rectangle rect, const Color& color = Color())
-        : material(Material::construct(Texture::construct(texture_path), color)),
+    Sprite(const Path& texture_path, StringView shader_name, Rectangle rect,
+           const Color& color = Color())
+        : material(Material::construct(Texture::construct(texture_path),
+                                       Shader::construct(shader_name), color)),
           rectangle(rect)
     {
     }
