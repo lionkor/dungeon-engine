@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "Backend.h"
 #include "sfml/SFMLBackend.h"
+#include "GL/GLBackend.h"
 
 OwnPtr<Window> Window::s_the_window;
 
@@ -45,6 +46,11 @@ void Window::set_size(const glm::vec2& size)
     m_backend->set_window_size(size);
 }
 
+glm::vec2 Window::size() const
+{
+    return m_backend->window_size();
+}
+
 bool Window::is_mouse_down()
 {
     NOTIMPL
@@ -62,7 +68,8 @@ Window& Window::the()
     if (!Window::s_the_window)
     {
         // FIXME: Always SFML
-        Window::s_the_window = OwnPtr<Window>(new Window(BackendImplementation::SFML));
+        Window::s_the_window =
+            OwnPtr<Window>(new Window(Application::backend_implementation));
     }
     return *Window::s_the_window;
 }
@@ -73,6 +80,12 @@ Window::Window(BackendImplementation type) : m_backend(/* what should we pass ba
     {
     case BackendImplementation::SFML:
         m_backend = OwnPtr<Backend>(new SFMLBackend());
+        break;
+    case BackendImplementation::GL:
+        m_backend = OwnPtr<Backend>(new GLBackend());
+        break;
+    default:
+        ASSERT(false);
         break;
     }
     ASSERT(m_backend);

@@ -127,6 +127,8 @@ void SFMLBackend::set_window_size(const glm::vec2& size)
         sf::Vector2u { static_cast<uint>(size.x), static_cast<uint>(size.y) });
 }
 
+glm::vec2 SFMLBackend::window_size() const { NOTIMPL }
+
 GUID SFMLBackend::submit(const Sprite& sprite)
 {
     ASSERT(false);

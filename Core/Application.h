@@ -26,9 +26,8 @@ public:
 
     float delta_time();
 
-    // FIXME: This will always be SFML
     static constexpr BackendImplementation backend_implementation =
-        BackendImplementation::SFML;
+        BackendImplementation::GL;
 
 protected:
     void update_timers();

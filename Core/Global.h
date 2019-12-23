@@ -13,6 +13,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <glm/glm.hpp>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 using glm::vec2;
 using SizeT = std::size_t;
@@ -58,6 +60,7 @@ using Array = std::array<_T, size>;
 enum class BackendImplementation
 {
     SFML,
+    GL
 };
 
 #endif // GLOBAL_H

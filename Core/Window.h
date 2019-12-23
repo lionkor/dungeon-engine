@@ -19,6 +19,7 @@ public:
     String title();
     void   set_title(const StringView& title);
     void   set_size(const vec2& size);
+    vec2   size() const;
 
     bool is_mouse_down();
     bool is_key_pressed(Key key);

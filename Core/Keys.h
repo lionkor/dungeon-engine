@@ -1,6 +1,9 @@
 #ifndef KEYS_H
 #define KEYS_H
 
+#include <GLFW/glfw3.h>
+#include "Global.h"
+
 enum Key
 {
     A = 0,
@@ -106,5 +109,40 @@ enum Key
     Pause,
 };
 
+inline static Key key_from_glfw_key(int glfw_key)
+{
+    switch (glfw_key)
+    {
+    case GLFW_KEY_ESCAPE:
+        return Key::Escape;
+    default:
+        LOG(__FUNCTION__ << ": "
+                         << " not implemented: case " << glfw_key);
+        break;
+    }
+}
+
+inline static int glfw_key_from_key(Key key)
+{
+    switch (key)
+    {
+    case Key::Escape:
+        return GLFW_KEY_ESCAPE;
+    case Key::A:
+        return GLFW_KEY_A;
+    case Key::B:
+        return GLFW_KEY_B;
+    case Key::C:
+        return GLFW_KEY_C;
+    case Key::D:
+        return GLFW_KEY_D;
+    case Key::E:
+        return GLFW_KEY_E;
+    default:
+        LOG(__FUNCTION__ << ": "
+                         << " not implemented: case " << key);
+        return GLFW_KEY_UNKNOWN;
+    }
+}
 
 #endif // KEYS_H

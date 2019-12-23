@@ -12,13 +12,15 @@ class GenericResource;
 extern Texture* new_sfml_texture(const Path& path);
 extern Texture* new_sfml_texture(const GenericResource& res);
 
+extern Texture* new_gl_texture(const Path& path);
+extern Texture* new_gl_texture(const GenericResource& res);
+
 class Texture : public GUID
 {
 public:
     friend class ImageFile;
 
-
-    virtual inline const char* class_name() const { return "Material"; }
+    virtual inline const char* class_name() const { return "Texture"; }
     template<typename... _Args>
     static RefPtr<Texture> construct(_Args&&... args)
     {
@@ -26,6 +28,9 @@ public:
         {
         case BackendImplementation::SFML:
             return RefPtr<Texture>(new_sfml_texture(std::forward<_Args>(args)...));
+            break;
+        case BackendImplementation::GL:
+            return RefPtr<Texture>(new_gl_texture(std::forward<_Args>(args)...));
             break;
         }
         ASSERT(false /* not implemented */);

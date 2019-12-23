@@ -7,6 +7,7 @@
 #include "../Application.h"
 
 extern class Material* new_sfml_material(const RefPtr<Texture>&, const Color&);
+extern class Material* new_gl_material(const RefPtr<Texture>&, const Color&);
 
 class Material
 {
@@ -19,6 +20,9 @@ public:
         {
         case BackendImplementation::SFML:
             return RefPtr<Material>(new_sfml_material(std::forward<_Args>(args)...));
+            break;
+        case BackendImplementation::GL:
+            return RefPtr<Material>(new_gl_material(std::forward<_Args>(args)...));
             break;
         }
         ASSERT(false /* not implemented */);

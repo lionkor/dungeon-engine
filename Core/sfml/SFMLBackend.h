@@ -26,14 +26,15 @@ public:
     SFMLBackend();
     ~SFMLBackend();
 
-    virtual void   update(float) override;
-    virtual void   clear() override;
-    virtual void   draw() override;
-    virtual void   display() override;
-    virtual void   close_window() override;
-    virtual String window_title() const;
-    virtual void   set_window_title(const StringView& title) override;
-    virtual void   set_window_size(const glm::vec2& size) override;
+    virtual void      update(float) override;
+    virtual void      clear() override;
+    virtual void      draw() override;
+    virtual void      display() override;
+    virtual void      close_window() override;
+    virtual String    window_title() const;
+    virtual void      set_window_title(const StringView& title) override;
+    virtual void      set_window_size(const glm::vec2& size) override;
+    virtual glm::vec2 window_size() const override;
 
     virtual GUID submit(const Sprite& sprite) override;
     virtual GUID submit(const SpriteRenderComponent& sprite_render_comp) override;
