@@ -57,6 +57,10 @@ using Array = std::array<_T, size>;
               << x << ANSI_RESET << std::endl
 #endif // DEBUG
 
+#define ERROR(x)                                                                         \
+    std::cout << ANSI_RED_BOLD << "ERROR " << __FILENAME__ << ":" << __LINE__ << ": "    \
+              << x << ANSI_RESET << std::endl
+
 enum class BackendImplementation
 {
     SFML,
