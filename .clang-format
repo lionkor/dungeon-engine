@@ -1,13 +1,10 @@
-﻿SpaceBeforeCpp11BracedList: 'true'
+﻿BasedOnStyle: WebKit
+SpaceBeforeCpp11BracedList: 'true'
 AlignEscapedNewlinesLeft: 'true'
-AllowShortBlocksOnASingleLine: 'true'
-AllowShortFunctionsOnASingleLine: 'false'
-AllowShortIfStatementsOnASingleLine: 'true'
-AllowShortLoopsOnASingleLine: 'false'
+AllowShortBlocksOnASingleLine: 'false'
 AlwaysBreakBeforeMultilineStrings: 'true'
 AlwaysBreakTemplateDeclarations: 'true'
 BinPackParameters: 'true'
-BreakBeforeBraces: Allman
 BreakConstructorInitializersBeforeComma: 'false'
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
 ConstructorInitializerIndentWidth: '4'
@@ -30,10 +27,15 @@ AlignOperands: 'true'
 AlignTrailingComments: 'true'
 AllowAllConstructorInitializersOnNextLine: 'true'
 AllowShortCaseLabelsOnASingleLine: 'false'
-AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: 'false'
 AllowShortLoopsOnASingleLine: 'false'
-ColumnLimit: 90
 SortIncludes: 'false'
 AccessModifierOffset: -4
 SpaceAfterTemplateKeyword: 'false'
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterFunction: false
+    AfterClass: true
+    AfterEnum: true
+
