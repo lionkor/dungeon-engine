@@ -30,12 +30,20 @@ AllowShortCaseLabelsOnASingleLine: 'false'
 AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: 'false'
 AllowShortLoopsOnASingleLine: 'false'
+<<<<<<< Updated upstream
+=======
+ColumnLimit: 120
+>>>>>>> Stashed changes
 SortIncludes: 'false'
 AccessModifierOffset: -4
 SpaceAfterTemplateKeyword: 'false'
 BreakBeforeBraces: Custom
 BraceWrapping:
+<<<<<<< Updated upstream
     AfterFunction: false
     AfterClass: true
     AfterEnum: true
 
+=======
+    AfterFunction: true
+>>>>>>> Stashed changes
