@@ -42,6 +42,7 @@ void GenericResource::load_async()
 
 void GenericResource::load()
 {
+    LOG("path: " << m_path);
     ASSERT(m_is_loaded == false);
     // needs to be null, otherwise already loaded!
     ASSERT(m_data.is_null());

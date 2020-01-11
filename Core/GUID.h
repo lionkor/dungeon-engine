@@ -11,6 +11,10 @@ public:
     GUID();
     ~GUID();
 
+    GUID(const GUID&);
+    GUID(GUID&&);
+    GUID& operator=(const GUID&);
+
     GUID& guid();
 
     constexpr const GUID& guid() const { return *this; }
@@ -23,6 +27,8 @@ public:
 
     constexpr bool operator==(const GUID& other) const { return m_raw == other.m_raw; }
 
+    constexpr bool operator!=(const GUID& other) const { return !(*this == other); }
+
     constexpr bool operator<=(const GUID& other) const { return m_raw <= other.m_raw; }
 
     constexpr bool operator>=(const GUID& other) const { return m_raw >= other.m_raw; }
@@ -31,11 +37,9 @@ private:
     std::uintptr_t m_raw;
 };
 
-namespace std
-{
+namespace std {
 template<>
-struct hash<GUID>
-{
+struct hash<GUID> {
     std::size_t operator()(const GUID& s) const noexcept { return s.int_guid(); }
 };
 } // namespace std
