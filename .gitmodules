@@ -10,3 +10,6 @@
 [submodule "glfw"]
 	path = glfw
 	url = https://github.com/lionkor/glfw
+[submodule "tests/acutest"]
+	path = tests/acutest
+	url = https://github.com/mity/acutest
