@@ -2,7 +2,7 @@
 
 mkdir -p bin include lib
 
-if [ ! -d String ] || [ ! -d SFML ] || [ ! -d glew ] || [ ! -d glfw ]; then
+if [ ! -d String ] || [ ! -d gli ] || [ ! -d SFML ] || [ ! -d glew ] || [ ! -d glfw ]; then
     git submodule update --init
     rm -r include lib
 fi
