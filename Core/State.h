@@ -7,15 +7,15 @@
 class State
 {
 public:
-    State() : m_entities(0) {}
+    State()
+        : m_entities(0) {}
     virtual ~State() {}
 
     virtual void update(float dt) = 0;
 
     template<typename _EntityT, typename... _Args>
-    void adopt_entity(_Args&&... args)
-    {
-        auto e = _EntityT::construct(*this, std::forward(args)...);
+    void adopt_entity(_Args&&... args) {
+        auto e = _EntityT::construct(*this, std::forward<_Args>(args)...);
         m_entities.emplace(std::pair { e->guid(), std::move(e) });
     }
     RawPtr<Entity> get_entity(GUID guid);

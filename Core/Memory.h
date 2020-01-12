@@ -9,17 +9,17 @@ class WeakPtr : public std::weak_ptr<_T>
 {
 public:
     template<typename... _Args>
-    WeakPtr(_Args&&... args) : std::weak_ptr<_T>(args...)
-    {
+    WeakPtr(_Args&&... args)
+        : std::weak_ptr<_T>(args...) {
     }
 
     inline RawPtr<_T> raw() { return this->get(); }
 
-    inline bool is_null() const { return !this->get(); }
-    inline bool is_not_null() const { return this->get(); }
-    inline      operator bool() const { return this->get(); }
+    inline bool is_null() const { return !this->_M_ptr; }
+    inline bool is_not_null() const { return this->_M_ptr; }
+    inline      operator bool() const { return this->_M_ptr; }
 
-    inline const RawPtr<_T> raw() const { return this->get(); }
+    inline const RawPtr<_T> raw() const { return this->_M_ptr; }
 };
 
 template<typename _T>
@@ -27,47 +27,41 @@ class RefPtr : public std::shared_ptr<_T>
 {
 public:
     template<typename... _Args>
-    static RefPtr make(_Args&&... args)
-    {
+    static RefPtr make(_Args&&... args) {
         return std::make_shared<_T>(args...);
     }
 
     template<typename... _Args>
-    RefPtr(_Args&&... args) : std::shared_ptr<_T>(args...)
-    {
+    RefPtr(_Args&&... args)
+        : std::shared_ptr<_T>(args...) {
     }
 
     inline bool is_null() const { return !this->get(); }
     inline bool is_not_null() const { return this->get(); }
     inline      operator bool() const { return this->get(); }
 
-    inline RefPtr& operator=(const RefPtr& ptr)
-    {
+    inline RefPtr& operator=(const RefPtr& ptr) {
         std::shared_ptr<_T>::operator=(ptr);
         return *this;
     }
 
     template<typename _TConvertType>
-    _TConvertType& as()
-    {
+    _TConvertType& as() {
         return *(_TConvertType*)(this->get());
     }
 
     template<typename _TConvertType>
-    _TConvertType* as_ptr()
-    {
+    _TConvertType* as_ptr() {
         return (_TConvertType*)(this->get());
     }
 
     template<typename _TConvertType>
-    const _TConvertType* as_ptr() const
-    {
+    const _TConvertType* as_ptr() const {
         return (_TConvertType*)(this->get());
     }
 
     template<typename _TConvertType>
-    const _TConvertType& as() const
-    {
+    const _TConvertType& as() const {
         return *(const _TConvertType*)(this->get());
     }
 
@@ -81,13 +75,12 @@ class OwnPtr : public std::unique_ptr<_T>
 {
 public:
     template<typename... _Args>
-    OwnPtr(_Args&&... args) : std::unique_ptr<_T>(args...)
-    {
+    OwnPtr(_Args&&... args)
+        : std::unique_ptr<_T>(args...) {
     }
 
     template<typename... _Args>
-    static OwnPtr make(_Args&&... args)
-    {
+    static OwnPtr make(_Args&&... args) {
         return OwnPtr(new _T(args...));
     }
 
@@ -99,26 +92,24 @@ public:
     inline const RawPtr<_T> raw() const { return this->get(); }
 };
 
-#define OBJECT(x, ...)                                                                   \
-public:                                                                                  \
-    virtual inline const char* class_name() const { return #x; }                         \
-    template<typename... _Args>                                                          \
-    static OwnPtr<x> construct(_Args&&... args)                                          \
-    {                                                                                    \
-        return OwnPtr<x>(new x(std::forward<_Args>(args)...));                           \
-    }                                                                                    \
-                                                                                         \
+#define OBJECT(x, ...)                                           \
+public:                                                          \
+    virtual inline const char* class_name() const { return #x; } \
+    template<typename... _Args>                                  \
+    static OwnPtr<x> construct(_Args&&... args) {                \
+        return OwnPtr<x>(new x(std::forward<_Args>(args)...));   \
+    }                                                            \
+                                                                 \
     virtual ~x() __VA_ARGS__ {}
 
-#define OBJECT_CAST_CTOR(x, y, ...)                                                      \
-public:                                                                                  \
-    virtual inline const char* class_name() const { return #x; }                         \
-    template<typename... _Args>                                                          \
-    static OwnPtr<y> construct(_Args&&... args)                                          \
-    {                                                                                    \
-        return OwnPtr<y>(new x(std::forward<_Args>(args)...));                           \
-    }                                                                                    \
-                                                                                         \
+#define OBJECT_CAST_CTOR(x, y, ...)                              \
+public:                                                          \
+    virtual inline const char* class_name() const { return #x; } \
+    template<typename... _Args>                                  \
+    static OwnPtr<y> construct(_Args&&... args) {                \
+        return OwnPtr<y>(new x(std::forward<_Args>(args)...));   \
+    }                                                            \
+                                                                 \
     virtual ~x() __VA_ARGS__ {}
 
 #endif // MEMORY_H
