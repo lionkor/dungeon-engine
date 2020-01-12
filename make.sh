@@ -48,8 +48,16 @@ if [ ! -s include/GLFW ]; then
     ln -s ${PWD}/glfw/include/* include/
 fi
 
+if [ ! -s include/gli ]; then
+    cd glfw
+    cmake . -DBUILD_SHARED_LIBS=false
+    make -j5
+    cd ..
+    ln -s ${PWD}/gli/gli include
+fi
+
 cd bin
-rm -v dungeon-engine
+rm -fv dungeon-engine all_tests
 cmake -DCMAKE_BUILD_TYPE=Debug -S ..
 make -j5
 cd ..

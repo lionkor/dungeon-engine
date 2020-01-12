@@ -13,3 +13,6 @@
 [submodule "tests/acutest"]
 	path = tests/acutest
 	url = https://github.com/mity/acutest
+[submodule "gli"]
+	path = gli
+	url = https://github.com/lionkor/gli
