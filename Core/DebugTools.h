@@ -28,37 +28,34 @@
 #define ANSI_UNDERLINE "\u001b[4m"
 
 #ifndef NOTIMPL
-#if DEBUG
-#define NOTIMPL                                                                          \
-    fprintf(stderr, "%s%s called but not implemented / unfinished in %s%s:%u%s\n",       \
-            ANSI_YELLOW, __PRETTY_FUNCTION__, ANSI_BOLD, __FILE__, __LINE__,             \
-            ANSI_RESET);
+#define NOTIMPL                                                                    \
+    fprintf(stderr, "%s%s called but not implemented / unfinished in %s%s:%u%s\n", \
+        ANSI_YELLOW, __PRETTY_FUNCTION__, ANSI_BOLD, __FILE__, __LINE__,           \
+        ANSI_RESET);
 
-#endif
-#endif
+#endif // NOTIMPL
 
 #ifndef ASSERT
 #define ASSERT(cond) _assert(__FILE__, __PRETTY_FUNCTION__, __LINE__, #cond, (cond))
+#define ASSERT_NOT_REACHABLE() _assert(__FILE__, __PRETTY_FUNCTION__, __LINE__, "reached unreachable code", false)
 
 inline void _assert(const char* file, const char* function, unsigned line,
-                    const char* condition_string, bool result)
-{
-    if (!result)
-    {
+    const char* condition_string, bool result) {
+    if (!result) {
 #if DEBUG
         fprintf(stderr,
-                "%sASSERTION FAILED%s at %s%s:%u%s \n\t-> in %s%s%s, Line %u: \n\t\t-> "
-                "Failed Condition: %s%s%s\n",
-                ANSI_RED_BOLD, ANSI_RESET, ANSI_UNDERLINE, file, line, ANSI_RESET,
-                ANSI_BOLD, function, ANSI_RESET, line, ANSI_RED, condition_string,
-                ANSI_RESET);
+            "%sASSERTION FAILED%s at %s%s:%u%s \n\t-> in %s%s%s, Line %u: \n\t\t-> "
+            "Failed Condition: %s%s%s\n",
+            ANSI_RED_BOLD, ANSI_RESET, ANSI_UNDERLINE, file, line, ANSI_RESET,
+            ANSI_BOLD, function, ANSI_RESET, line, ANSI_RED, condition_string,
+            ANSI_RESET);
         fprintf(stderr, "%s... terminating with SIGABRT ...%s\n", ANSI_BOLD, ANSI_RESET);
         abort();
 #else
         fprintf(stderr,
-                "%s=> ASSERTION FAILED IN RELEASE BUILD%s%s -> IGNORING FAILED ASSERTION "
-                "& HOPING IT WON'T CRASH%s\n",
-                ANSI_RED_BOLD, ANSI_RESET, ANSI_RED, ANSI_RESET);
+            "%s=> ASSERTION `%s` FAILED IN RELEASE BUILD%s%s -> IGNORING FAILED ASSERTION "
+            "& HOPING IT WON'T CRASH%s\n",
+            ANSI_RED_BOLD, condition_string, ANSI_RESET, ANSI_RED, ANSI_RESET);
 #endif
     }
 }

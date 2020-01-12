@@ -4,12 +4,12 @@
 #include "Core/Window.h"
 #include "Core/ECS/SpriteRenderComponent.h"
 
-class Person : public Entity {
+class Person : public Entity
+{
     OBJECT_CAST_CTOR(Person, Entity, override);
 
 public:
-    virtual void update(float) override
-    {
+    virtual void update(float) override {
         if (Window::the().is_key_pressed(Key::B))
             std::cout << "B IS PRESSED!" << std::endl;
     }
@@ -18,16 +18,16 @@ public:
     virtual void deserialize(File&) override {}
 
 protected:
-    Person(State& e) : Entity(e, vec2 { 300, 300 })
-    {
+    Person(State& e)
+        : Entity(e, vec2 { 300, 300 }) {
         add_component<SpriteRenderComponent>(
-            Sprite(Path("res/textures/ground.png"), "simple", Rectangle({ 0, 0 }, { 100, 100 })));
+            Sprite(Path("res/textures/ground.dds"), "simple", Rectangle({ 0, 0 }, { 100, 100 })));
     }
 };
 
+DEFINE_LOGSTREAM;
 
-int main(int, char**)
-{
+int main(int, char**) {
     auto& app = Application::the();
 
     reinterpret_cast<GameState&>(app.state()).adopt_entity<Person>();

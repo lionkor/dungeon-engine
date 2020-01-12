@@ -7,10 +7,10 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS 2a)
 set(CMAKE_CXX_COMPILER clang++)
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2 -s")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -Wall -Wextra -Wno-unused-function")
 
 project(dungeon-engine)
-
 
 add_executable(dungeon-engine main.cpp
     Core/GenericResource.cpp
@@ -54,6 +54,12 @@ target_link_libraries(dungeon-engine
 )
 
 project(all_tests)
+
+add_compile_definitions(
+    DEBUG=0 
+    VERBOSE_DBG=0 
+    DEBUG_TO_FILE=1
+)
 
 add_executable(all_tests tests/all_tests.cpp
     Core/GenericResource.cpp

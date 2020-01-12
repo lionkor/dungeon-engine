@@ -59,5 +59,5 @@ fi
 cd bin
 rm -fv dungeon-engine all_tests
 cmake -DCMAKE_BUILD_TYPE=Debug -S ..
-make -j5
+make -j5 $1
 cd ..

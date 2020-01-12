@@ -1,5 +1,8 @@
 #include "acutest/include/acutest.h"
+
 #include "../Core/Global.h"
+DEFINE_LOGSTREAM; // needed for logging to file
+
 #include "../Core/Memory.h"            // RefPtr
 #include "../Core/GUID.h"              // GUID
 #include "../Core/IO/File.h"           // ImageFile
@@ -8,6 +11,7 @@
 #include "../Core/ECS/Entity.h"        // Entity
 #include "../Core/State.h"             // State
 #include "../Core/Rendering/Texture.h" // Texture
+#include "../Core/GL/GLBackend.h"      // GLBackend
 #include <functional>
 #include <unistd.h>
 
@@ -15,33 +19,20 @@ class GUIDTestObject : public GUID
 {
 };
 
-void class_ImageFile(void) {
+void class_Texture(void) {
+
+    // create an OpenGL context
+    GLBackend backend;
+
     {
-        TEST_CASE("rainbow.jpg");
-        Path      path("res/textures/rainbow.jpg");
-        ImageFile file(path);
+        TEST_CASE("ground.dds");
+        Path path("res/textures/ground.dds");
 
-        auto tex = file.create_texture();
-        TEST_CHECK(tex.is_not_null());
-        // this image should be 1300x1300 pixels
-
-        if (!TEST_CHECK(tex->width() == 1300)) {
-            TEST_MSG("Expected 1300, got %d", tex->width());
-        }
-
-        if (!TEST_CHECK(tex->height() == 1300)) {
-            TEST_MSG("Expected 1300, got %d", tex->height());
-        }
-    }
-    {
-        TEST_CASE("ground.png");
-        Path      path("res/textures/ground.png");
-        ImageFile file(path);
-
-        auto tex = file.create_texture();
+        auto tex = Texture::construct(path);
         TEST_CHECK(tex.is_not_null());
 
-        // this image should be 10x10 pixels
+        // this image should be 10x10
+
         if (!TEST_CHECK(tex->width() == 10)) {
             TEST_MSG("Expected 10, got %d", tex->width());
         }
@@ -55,12 +46,7 @@ void class_ImageFile(void) {
 void class_Clock(void) {
     Clock clock;
     clock.get_delta_time();
-    sleep(1);
-    float seconds = clock.get_delta_time();
-
-    TEST_CHECK(seconds > 1.0f);
-    TEST_CHECK(seconds < 1.1f);
-    TEST_CHECK(time_now() != 0);
+    TEST_CHECK(clock.get_delta_time() < 0.01f); // with practically no time elapsed, this should be near 0
 }
 
 void class_RefPtr_basic_behv(void) {
@@ -167,7 +153,7 @@ void class_Entity(void) {
 TEST_LIST = {
     { "sanity checks", sanity_checks },
     { "class GUID", class_GUID },
-    { "class ImageFile", class_ImageFile },
+    { "class Texture", class_Texture },
     { "class RefPtr basic behaviour", class_RefPtr_basic_behv },
     { "class State", class_State },
     { "class Entity", class_Entity },
