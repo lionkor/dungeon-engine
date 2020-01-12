@@ -5,3 +5,7 @@ log.txt
 perf.data
 vgcore*
 String
+*.user
+bin
+*.old
+tests/tests.log
