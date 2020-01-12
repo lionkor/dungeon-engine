@@ -19,6 +19,12 @@ public:
     virtual SizeT height() const override;
     virtual Color pixel_at(SizeT x, SizeT y) override;
     virtual void  set_pixel_at(SizeT x, SizeT y, const Color& col) override;
+
+    GLuint texture_id() const { return m_texture_id; }
+
+protected:
+    GLuint               m_texture_id;
+    OwnPtr<gli::texture> m_texture;
 };
 
 #endif // GLTEXTURE_H
