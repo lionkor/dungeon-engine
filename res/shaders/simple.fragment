@@ -1,0 +1,15 @@
+#version 330 core
+
+in vec2 UV;
+in vec3 n;
+//in vec3 fragment_color;
+out vec3 color;
+
+
+uniform sampler2D texture_sampler;
+
+void main()
+{
+    color = texture(texture_sampler, UV).rgb * ( clamp(dot(n, vec3(-3, 0, 0)), 1, 0));
+}
+
