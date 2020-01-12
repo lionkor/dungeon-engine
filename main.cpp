@@ -4,8 +4,7 @@
 #include "Core/Window.h"
 #include "Core/ECS/SpriteRenderComponent.h"
 
-class Person : public Entity
-{
+class Person : public Entity {
     OBJECT_CAST_CTOR(Person, Entity, override);
 
 public:
@@ -21,9 +20,8 @@ public:
 protected:
     Person(State& e) : Entity(e, vec2 { 300, 300 })
     {
-        add_component<SpriteRenderComponent>(Sprite(Path("res/textures/ground.png"),
-                                                    "simple",
-                                                    Rectangle({ 0, 0 }, { 100, 100 })));
+        add_component<SpriteRenderComponent>(
+            Sprite(Path("res/textures/ground.png"), "simple", Rectangle({ 0, 0 }, { 100, 100 })));
     }
 };
 
